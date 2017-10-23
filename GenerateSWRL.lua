@@ -14,9 +14,13 @@ require "ConstantsForParsing"
 -- Define o módulo.
 GenerateSWRL = {}
 
--- TODO criar lista de identificadores
--- TODO lista de operadores
--- TODO ver quais outras listas deverão ser criadas
+-- TODO ver como lidar com and e or (diferença semântica)
+
+-- Índice que indica qual a subexpressão de AND atual.
+local currAnd = 0
+
+-- Índice que indica qual a subexpressão de OR atual.
+local currOr = 0
 
 -- Tags para a AST.
 local tag = ConstantsForParsing.getTag()
@@ -24,6 +28,54 @@ local tag = ConstantsForParsing.getTag()
 -------------------------------------------------------------------------------------------
 -- Funções locais auxiliares ao módulo
 -------------------------------------------------------------------------------------------
+
+-- Função que gera uma regra em SWRL em formato de string.
+-- TODO ver quais deverão ser delegados a expressções menores (add, colId etc)
+-- TODO provavelmente:
+-- os que apresentam ?col (e ?nameCol) são relacionados a colId
+-- ?comp claramente delegado à comparação (e ?dComp, e ?op)
+local function generateRule(ast)
+	local s = ""
+
+	-- Todas as regras apresentam este cabeçalho TODO todas mesmo????
+	s = s..[[Predicate(?pred) ^
+	hasDescription(?pred, ?desc)
+	]]
+
+	s = s.."swrlb:substringBefore(?exp"..currAnd..", ?desc, \" AND \") ^\n"
+	s = s.."swrlb:substringBefore(?expOr"..currOr..", ?exp"..currAnd..", \" OR \") ^\n"
+
+	s = s.."CompositeExpression(?pred) ^\n"
+
+	-- Identificador????
+	s = s.."Column(?col) ^\n"
+	s = s.."hasName(?col, ?nameCol) ^\n"
+	s = s.."swrlb:contains(?desc, ?nameCol) ^\n"
+
+	-- Comparação????
+	s = s.."ComparisonOperator(?comp) ^\n"
+	s = s.."hasDescription(?comp, ?dComp) ^\n"
+	s = s.."swrlb:contains(?desc, ?dComp) ^\n"
+	s = s.."swrlb:tokenize(?op, ?expOr"..currOr..", \" \") ^\n"
+	s = s.."swrlb:stringEqualIgnoreCase(?dComp, ?op) ^\n"
+
+	s = s.."swrlx:makeOWLThing(?simple, ?expOr"..currOr..")\n"
+
+	-- Todas as regras apresentam essa finalização TODO todas mesmo????
+	s = s.."-> Predicate(?simple) ^\n"
+	s = s.."SimpleExpression(?simple) ^\n"
+	s = s.."hasDescription(?simple, ?exp"..currAnd..") ^\n"
+
+	-- Identificador????
+	s = s.."ExpressionObject(?col) ^\n"
+	s = s.."ReferencedColumn(?col) ^\n"
+	s = s.."componentOf(?col, ?pred) ^\n"
+
+	-- Comparação????
+	s = s.."componentOf(?comp, ?pred)\n"
+
+	return s
+end
 
 -- Função que percorre a AST preenchendo a string de saída com o código SWRL de acordo.
 local function scanAST(ast)
@@ -35,19 +87,32 @@ local function scanAST(ast)
 
 		if ast["tag"] == tag["where"] then
 			ret = ret..scanAST(ast[1])
+
 		elseif ast["tag"] == tag["or"] then
-			ret = ret..writeOr(ast)
+			for _, v in ipairs(ast) do
+				ret = ret..scanAST(v)
+				-- Prepara para atualizar a próxima expressão
+				currOr = currOr + 1
+			end
+			
 		elseif ast["tag"] == tag["and"] then
-			ret = ret..writeAnd(ast)
+			for _, v in ipairs(ast) do
+				ret = ret..scanAST(v)
+				-- Prepara para atualizar a próxima expressão
+				currAnd = currAnd + 1
+			end
+
 		elseif ast["tag"] == tag["comp"] then
-			ret = ret..writeComp(ast)
+			ret = ret..generateRule(ast)
 		elseif ast["tag"] == tag["mult"] then
 
 		elseif ast["tag"] == tag["add"] then
-
+			
 		elseif ast["tag"] == tag["colId"] then
+			
+		elseif ast["tag"] == tag["date"] then
 
-		elseif ast["tag"] == tag["in"] then
+		elseif ast["tag"] == tag["interval"] then
 
 		-- Casos de nós da AST que não estão dentro do WHERE de SQL.
 		else
@@ -56,7 +121,6 @@ local function scanAST(ast)
 			end
 		end
 	end
-
 	return ret
 end
 
@@ -81,42 +145,7 @@ function GenerateSWRL.generateOutput(fileName, index)
 end
 
 --[[
-Conceitos:
-SimpleExpression
-ExpressionObject
-Literal
-ReferencedColumn
-ComponentOf (ComparisonOperator, Literal e ReferencedColumn)
 
 
---Predicate hasDescription “l_shipdate <= date ’1998-12-01 ’ - interval ’ 87 days ’”
---Column hasName “l_shipdate”
---ComparisonOperator hasDescription “<=”
-
-Conceitos: SimpleExpression, ExpressionObject, Literal, ReferencedColumn e
-o relacionamento ComponentOf da SimpleExpression para todos os ExpressionObject
-(ComparisonOperator, Literal e ReferencedColumn).
-
-Conclusão que deve ser extraída:
-
-SimpleExpression hasDescription “l_shipdate <= date ’1998-12-01 ’ - interval ’ 87 days ’”
-
-ExpressionObject: “l_shipdate”, “<=”, “date ’1998-12-01 ’ - interval ’ 87 days ’”
-(Aqui, pode classificar nas especializações primeiro e depois dizer que também é desse tipo.
- ComparisonOperator já existe, só precisa relacionar com a SimpleExpression)
-
-Literal hasDescription “date ’1998-12-01 ’ - interval ’ 87 days ’”
-
-ReferencedColumn: Column hasName “l_shipdate” (Aqui é só classificar um objeto existente,
- coluna que tenha esse nome)
-
-ComparisonOperator hasDescription “<=” ComponentOf
-SimpleExpression hasDescription “l_shipdate <= date ’1998-12-01 ’ - interval ’ 87 days ’”
-
-Literal hasDescription “date ’1998-12-01 ’ - interval ’ 87 days ’”
-ComponentOf SimpleExpression hasDescription “l_shipdate <= date ’1998-12-01 ’ - interval ’ 87 days ’”
-
-ReferencedColumn hasName “l_shipdate” ComponentOf
-SimpleExpression hasDescription “l_shipdate <= date ’1998-12-01 ’ - interval ’ 87 days ’”
 
 ]]
