@@ -22,3 +22,7 @@ if your version is 5.1, or
 
 if newer.
 
+### TODO
+
+The next steps are to generate the SWRL rules based on the WHERE clauses of the SQL queries.
+

@@ -94,7 +94,7 @@ local function scanAST(ast)
 				-- Prepara para atualizar a próxima expressão
 				currOr = currOr + 1
 			end
-			
+
 		elseif ast["tag"] == tag["and"] then
 			for _, v in ipairs(ast) do
 				ret = ret..scanAST(v)
@@ -107,9 +107,9 @@ local function scanAST(ast)
 		elseif ast["tag"] == tag["mult"] then
 
 		elseif ast["tag"] == tag["add"] then
-			
+
 		elseif ast["tag"] == tag["colId"] then
-			
+
 		elseif ast["tag"] == tag["date"] then
 
 		elseif ast["tag"] == tag["interval"] then
