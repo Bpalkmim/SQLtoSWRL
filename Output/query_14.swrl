@@ -1,0 +1,398 @@
+Predicate(?pred) ^
+hasDescription(?pred, "p_partkey = l_partkey AND p_brand = 'Brand#12' AND p_container in ('SM CASE', 'SM BOX', 'SM PACK', 'SM PKG') AND l_quantity >= 1 AND l_quantity <= 1 + 10 AND p_size between 1 and 5 AND l_shipmode in ('AIR', 'AIR REG') AND l_shipinstruct = 'DELIVER IN PERSON'") ^
+ComparisonOperator(?comp1) ^
+hasDescription(?comp1, "=") ^
+hasDescription(?simple1, "p_partkey = l_partkey") ^
+Column(?col1) ^
+hasName(?col1, "p_partkey") ^
+Column(?col2) ^
+hasName(?col2, "l_partkey") ^
+ComparisonOperator(?comp2) ^
+hasDescription(?comp2, "=") ^
+hasDescription(?simple2, "p_brand = 'Brand#12'") ^
+Column(?col3) ^
+hasName(?col3, "p_brand") ^
+hasDescription(?lit1, 'Brand#12') ^
+ComparisonOperator(?comp3) ^
+hasDescription(?comp3, "in") ^
+hasDescription(?simple3, "p_container in ('SM CASE', 'SM BOX', 'SM PACK', 'SM PKG')") ^
+Column(?col4) ^
+hasName(?col4, "p_container") ^
+hasDescription(?lit2, "('SM CASE', 'SM BOX', 'SM PACK', 'SM PKG')") ^
+ComparisonOperator(?comp4) ^
+hasDescription(?comp4, ">=") ^
+hasDescription(?simple4, "l_quantity >= 1") ^
+Column(?col5) ^
+hasName(?col5, "l_quantity") ^
+hasDescription(?lit3, 1) ^
+ComparisonOperator(?comp5) ^
+hasDescription(?comp5, "<=") ^
+hasDescription(?simple5, "l_quantity <= 1 + 10") ^
+Column(?col6) ^
+hasName(?col6, "l_quantity") ^
+hasDescription(?lit4, "1 + 10") ^
+ComparisonOperator(?comp6) ^
+hasDescription(?comp6, "between") ^
+hasDescription(?simple6, "p_size between 1 and 5") ^
+Column(?col7) ^
+hasName(?col7, "p_size") ^
+hasDescription(?lit5, "1 and 5") ^
+ComparisonOperator(?comp7) ^
+hasDescription(?comp7, "in") ^
+hasDescription(?simple7, "l_shipmode in ('AIR', 'AIR REG')") ^
+Column(?col8) ^
+hasName(?col8, "l_shipmode") ^
+hasDescription(?lit6, "('AIR', 'AIR REG')") ^
+ComparisonOperator(?comp8) ^
+hasDescription(?comp8, "=") ^
+hasDescription(?simple8, "l_shipinstruct = 'DELIVER IN PERSON'") ^
+Column(?col9) ^
+hasName(?col9, "l_shipinstruct") ^
+hasDescription(?lit7, 'DELIVER IN PERSON')
+-> componentOf(?and1, ?pred) ^
+ExpressionObject(?comp1) ^
+componentOf(?comp1, ?simple1) ^
+componentOf(?simple1, ?and1) ^
+SimpleExpression(?simple1) ^
+ReferencedColumn(?col1) ^
+ExpressionObject(?col1) ^
+componentOf(?col1, ?simple1) ^
+ReferencedColumn(?col2) ^
+ExpressionObject(?col2) ^
+componentOf(?col2, ?simple1) ^
+componentOf(?and2, ?pred) ^
+ExpressionObject(?comp2) ^
+componentOf(?comp2, ?simple2) ^
+componentOf(?simple2, ?and2) ^
+SimpleExpression(?simple2) ^
+ReferencedColumn(?col3) ^
+ExpressionObject(?col3) ^
+componentOf(?col3, ?simple2) ^
+componentOf(?lit1, ?simple2) ^
+ExpressionObject(?lit1) ^
+componentOf(?and3, ?pred) ^
+ExpressionObject(?comp3) ^
+componentOf(?comp3, ?simple3) ^
+componentOf(?simple3, ?and3) ^
+SimpleExpression(?simple3) ^
+ReferencedColumn(?col4) ^
+ExpressionObject(?col4) ^
+componentOf(?col4, ?simple3) ^
+componentOf(?lit2, ?simple3) ^
+ExpressionObject(?lit2) ^
+componentOf(?and4, ?pred) ^
+ExpressionObject(?comp4) ^
+componentOf(?comp4, ?simple4) ^
+componentOf(?simple4, ?and4) ^
+SimpleExpression(?simple4) ^
+ReferencedColumn(?col5) ^
+ExpressionObject(?col5) ^
+componentOf(?col5, ?simple4) ^
+componentOf(?lit3, ?simple4) ^
+ExpressionObject(?lit3) ^
+componentOf(?and5, ?pred) ^
+ExpressionObject(?comp5) ^
+componentOf(?comp5, ?simple5) ^
+componentOf(?simple5, ?and5) ^
+SimpleExpression(?simple5) ^
+ReferencedColumn(?col6) ^
+ExpressionObject(?col6) ^
+componentOf(?col6, ?simple5) ^
+componentOf(?lit4, ?simple5) ^
+ExpressionObject(?lit4) ^
+componentOf(?and6, ?pred) ^
+ExpressionObject(?comp6) ^
+componentOf(?comp6, ?simple6) ^
+componentOf(?simple6, ?and6) ^
+SimpleExpression(?simple6) ^
+ReferencedColumn(?col7) ^
+ExpressionObject(?col7) ^
+componentOf(?col7, ?simple6) ^
+componentOf(?lit5, ?simple6) ^
+ExpressionObject(?lit5) ^
+componentOf(?and7, ?pred) ^
+ExpressionObject(?comp7) ^
+componentOf(?comp7, ?simple7) ^
+componentOf(?simple7, ?and7) ^
+SimpleExpression(?simple7) ^
+ReferencedColumn(?col8) ^
+ExpressionObject(?col8) ^
+componentOf(?col8, ?simple7) ^
+componentOf(?lit6, ?simple7) ^
+ExpressionObject(?lit6) ^
+componentOf(?and8, ?pred) ^
+ExpressionObject(?comp8) ^
+componentOf(?comp8, ?simple8) ^
+componentOf(?simple8, ?and8) ^
+SimpleExpression(?simple8) ^
+ReferencedColumn(?col9) ^
+ExpressionObject(?col9) ^
+componentOf(?col9, ?simple8) ^
+componentOf(?lit7, ?simple8) ^
+ExpressionObject(?lit7)
+
+Predicate(?pred) ^
+hasDescription(?pred, "p_partkey = l_partkey AND p_brand = 'Brand#23' AND p_container in ('MED BAG', 'MED BOX', 'MED PKG', 'MED PACK') AND l_quantity >= 10 AND l_quantity <= 10 + 10 AND p_size between 1 and 10 AND l_shipmode in ('AIR', 'AIR REG') AND l_shipinstruct = 'DELIVER IN PERSON'") ^
+ComparisonOperator(?comp1) ^
+hasDescription(?comp1, "=") ^
+hasDescription(?simple1, "p_partkey = l_partkey") ^
+Column(?col1) ^
+hasName(?col1, "p_partkey") ^
+Column(?col2) ^
+hasName(?col2, "l_partkey") ^
+ComparisonOperator(?comp2) ^
+hasDescription(?comp2, "=") ^
+hasDescription(?simple2, "p_brand = 'Brand#23'") ^
+Column(?col3) ^
+hasName(?col3, "p_brand") ^
+hasDescription(?lit1, 'Brand#23') ^
+ComparisonOperator(?comp3) ^
+hasDescription(?comp3, "in") ^
+hasDescription(?simple3, "p_container in ('MED BAG', 'MED BOX', 'MED PKG', 'MED PACK')") ^
+Column(?col4) ^
+hasName(?col4, "p_container") ^
+hasDescription(?lit2, "('MED BAG', 'MED BOX', 'MED PKG', 'MED PACK')") ^
+ComparisonOperator(?comp4) ^
+hasDescription(?comp4, ">=") ^
+hasDescription(?simple4, "l_quantity >= 10") ^
+Column(?col5) ^
+hasName(?col5, "l_quantity") ^
+hasDescription(?lit3, 10) ^
+ComparisonOperator(?comp5) ^
+hasDescription(?comp5, "<=") ^
+hasDescription(?simple5, "l_quantity <= 10 + 10") ^
+Column(?col6) ^
+hasName(?col6, "l_quantity") ^
+hasDescription(?lit4, "10 + 10") ^
+ComparisonOperator(?comp6) ^
+hasDescription(?comp6, "between") ^
+hasDescription(?simple6, "p_size between 1 and 10") ^
+Column(?col7) ^
+hasName(?col7, "p_size") ^
+hasDescription(?lit5, "1 and 10") ^
+ComparisonOperator(?comp7) ^
+hasDescription(?comp7, "in") ^
+hasDescription(?simple7, "l_shipmode in ('AIR', 'AIR REG')") ^
+Column(?col8) ^
+hasName(?col8, "l_shipmode") ^
+hasDescription(?lit6, "('AIR', 'AIR REG')") ^
+ComparisonOperator(?comp8) ^
+hasDescription(?comp8, "=") ^
+hasDescription(?simple8, "l_shipinstruct = 'DELIVER IN PERSON'") ^
+Column(?col9) ^
+hasName(?col9, "l_shipinstruct") ^
+hasDescription(?lit7, 'DELIVER IN PERSON')
+-> componentOf(?and1, ?pred) ^
+ExpressionObject(?comp1) ^
+componentOf(?comp1, ?simple1) ^
+componentOf(?simple1, ?and1) ^
+SimpleExpression(?simple1) ^
+ReferencedColumn(?col1) ^
+ExpressionObject(?col1) ^
+componentOf(?col1, ?simple1) ^
+ReferencedColumn(?col2) ^
+ExpressionObject(?col2) ^
+componentOf(?col2, ?simple1) ^
+componentOf(?and2, ?pred) ^
+ExpressionObject(?comp2) ^
+componentOf(?comp2, ?simple2) ^
+componentOf(?simple2, ?and2) ^
+SimpleExpression(?simple2) ^
+ReferencedColumn(?col3) ^
+ExpressionObject(?col3) ^
+componentOf(?col3, ?simple2) ^
+componentOf(?lit1, ?simple2) ^
+ExpressionObject(?lit1) ^
+componentOf(?and3, ?pred) ^
+ExpressionObject(?comp3) ^
+componentOf(?comp3, ?simple3) ^
+componentOf(?simple3, ?and3) ^
+SimpleExpression(?simple3) ^
+ReferencedColumn(?col4) ^
+ExpressionObject(?col4) ^
+componentOf(?col4, ?simple3) ^
+componentOf(?lit2, ?simple3) ^
+ExpressionObject(?lit2) ^
+componentOf(?and4, ?pred) ^
+ExpressionObject(?comp4) ^
+componentOf(?comp4, ?simple4) ^
+componentOf(?simple4, ?and4) ^
+SimpleExpression(?simple4) ^
+ReferencedColumn(?col5) ^
+ExpressionObject(?col5) ^
+componentOf(?col5, ?simple4) ^
+componentOf(?lit3, ?simple4) ^
+ExpressionObject(?lit3) ^
+componentOf(?and5, ?pred) ^
+ExpressionObject(?comp5) ^
+componentOf(?comp5, ?simple5) ^
+componentOf(?simple5, ?and5) ^
+SimpleExpression(?simple5) ^
+ReferencedColumn(?col6) ^
+ExpressionObject(?col6) ^
+componentOf(?col6, ?simple5) ^
+componentOf(?lit4, ?simple5) ^
+ExpressionObject(?lit4) ^
+componentOf(?and6, ?pred) ^
+ExpressionObject(?comp6) ^
+componentOf(?comp6, ?simple6) ^
+componentOf(?simple6, ?and6) ^
+SimpleExpression(?simple6) ^
+ReferencedColumn(?col7) ^
+ExpressionObject(?col7) ^
+componentOf(?col7, ?simple6) ^
+componentOf(?lit5, ?simple6) ^
+ExpressionObject(?lit5) ^
+componentOf(?and7, ?pred) ^
+ExpressionObject(?comp7) ^
+componentOf(?comp7, ?simple7) ^
+componentOf(?simple7, ?and7) ^
+SimpleExpression(?simple7) ^
+ReferencedColumn(?col8) ^
+ExpressionObject(?col8) ^
+componentOf(?col8, ?simple7) ^
+componentOf(?lit6, ?simple7) ^
+ExpressionObject(?lit6) ^
+componentOf(?and8, ?pred) ^
+ExpressionObject(?comp8) ^
+componentOf(?comp8, ?simple8) ^
+componentOf(?simple8, ?and8) ^
+SimpleExpression(?simple8) ^
+ReferencedColumn(?col9) ^
+ExpressionObject(?col9) ^
+componentOf(?col9, ?simple8) ^
+componentOf(?lit7, ?simple8) ^
+ExpressionObject(?lit7)
+
+Predicate(?pred) ^
+hasDescription(?pred, "p_partkey = l_partkey AND p_brand = 'Brand#34' AND p_container in ('LG CASE', 'LG BOX', 'LG PACK', 'LG PKG') AND l_quantity >= 20 AND l_quantity <= 20 + 10 AND p_size between 1 and 15 AND l_shipmode in ('AIR', 'AIR REG') AND l_shipinstruct = 'DELIVER IN PERSON'") ^
+ComparisonOperator(?comp1) ^
+hasDescription(?comp1, "=") ^
+hasDescription(?simple1, "p_partkey = l_partkey") ^
+Column(?col1) ^
+hasName(?col1, "p_partkey") ^
+Column(?col2) ^
+hasName(?col2, "l_partkey") ^
+ComparisonOperator(?comp2) ^
+hasDescription(?comp2, "=") ^
+hasDescription(?simple2, "p_brand = 'Brand#34'") ^
+Column(?col3) ^
+hasName(?col3, "p_brand") ^
+hasDescription(?lit1, 'Brand#34') ^
+ComparisonOperator(?comp3) ^
+hasDescription(?comp3, "in") ^
+hasDescription(?simple3, "p_container in ('LG CASE', 'LG BOX', 'LG PACK', 'LG PKG')") ^
+Column(?col4) ^
+hasName(?col4, "p_container") ^
+hasDescription(?lit2, "('LG CASE', 'LG BOX', 'LG PACK', 'LG PKG')") ^
+ComparisonOperator(?comp4) ^
+hasDescription(?comp4, ">=") ^
+hasDescription(?simple4, "l_quantity >= 20") ^
+Column(?col5) ^
+hasName(?col5, "l_quantity") ^
+hasDescription(?lit3, 20) ^
+ComparisonOperator(?comp5) ^
+hasDescription(?comp5, "<=") ^
+hasDescription(?simple5, "l_quantity <= 20 + 10") ^
+Column(?col6) ^
+hasName(?col6, "l_quantity") ^
+hasDescription(?lit4, "20 + 10") ^
+ComparisonOperator(?comp6) ^
+hasDescription(?comp6, "between") ^
+hasDescription(?simple6, "p_size between 1 and 15") ^
+Column(?col7) ^
+hasName(?col7, "p_size") ^
+hasDescription(?lit5, "1 and 15") ^
+ComparisonOperator(?comp7) ^
+hasDescription(?comp7, "in") ^
+hasDescription(?simple7, "l_shipmode in ('AIR', 'AIR REG')") ^
+Column(?col8) ^
+hasName(?col8, "l_shipmode") ^
+hasDescription(?lit6, "('AIR', 'AIR REG')") ^
+ComparisonOperator(?comp8) ^
+hasDescription(?comp8, "=") ^
+hasDescription(?simple8, "l_shipinstruct = 'DELIVER IN PERSON'") ^
+Column(?col9) ^
+hasName(?col9, "l_shipinstruct") ^
+hasDescription(?lit7, 'DELIVER IN PERSON')
+-> componentOf(?and1, ?pred) ^
+ExpressionObject(?comp1) ^
+componentOf(?comp1, ?simple1) ^
+componentOf(?simple1, ?and1) ^
+SimpleExpression(?simple1) ^
+ReferencedColumn(?col1) ^
+ExpressionObject(?col1) ^
+componentOf(?col1, ?simple1) ^
+ReferencedColumn(?col2) ^
+ExpressionObject(?col2) ^
+componentOf(?col2, ?simple1) ^
+componentOf(?and2, ?pred) ^
+ExpressionObject(?comp2) ^
+componentOf(?comp2, ?simple2) ^
+componentOf(?simple2, ?and2) ^
+SimpleExpression(?simple2) ^
+ReferencedColumn(?col3) ^
+ExpressionObject(?col3) ^
+componentOf(?col3, ?simple2) ^
+componentOf(?lit1, ?simple2) ^
+ExpressionObject(?lit1) ^
+componentOf(?and3, ?pred) ^
+ExpressionObject(?comp3) ^
+componentOf(?comp3, ?simple3) ^
+componentOf(?simple3, ?and3) ^
+SimpleExpression(?simple3) ^
+ReferencedColumn(?col4) ^
+ExpressionObject(?col4) ^
+componentOf(?col4, ?simple3) ^
+componentOf(?lit2, ?simple3) ^
+ExpressionObject(?lit2) ^
+componentOf(?and4, ?pred) ^
+ExpressionObject(?comp4) ^
+componentOf(?comp4, ?simple4) ^
+componentOf(?simple4, ?and4) ^
+SimpleExpression(?simple4) ^
+ReferencedColumn(?col5) ^
+ExpressionObject(?col5) ^
+componentOf(?col5, ?simple4) ^
+componentOf(?lit3, ?simple4) ^
+ExpressionObject(?lit3) ^
+componentOf(?and5, ?pred) ^
+ExpressionObject(?comp5) ^
+componentOf(?comp5, ?simple5) ^
+componentOf(?simple5, ?and5) ^
+SimpleExpression(?simple5) ^
+ReferencedColumn(?col6) ^
+ExpressionObject(?col6) ^
+componentOf(?col6, ?simple5) ^
+componentOf(?lit4, ?simple5) ^
+ExpressionObject(?lit4) ^
+componentOf(?and6, ?pred) ^
+ExpressionObject(?comp6) ^
+componentOf(?comp6, ?simple6) ^
+componentOf(?simple6, ?and6) ^
+SimpleExpression(?simple6) ^
+ReferencedColumn(?col7) ^
+ExpressionObject(?col7) ^
+componentOf(?col7, ?simple6) ^
+componentOf(?lit5, ?simple6) ^
+ExpressionObject(?lit5) ^
+componentOf(?and7, ?pred) ^
+ExpressionObject(?comp7) ^
+componentOf(?comp7, ?simple7) ^
+componentOf(?simple7, ?and7) ^
+SimpleExpression(?simple7) ^
+ReferencedColumn(?col8) ^
+ExpressionObject(?col8) ^
+componentOf(?col8, ?simple7) ^
+componentOf(?lit6, ?simple7) ^
+ExpressionObject(?lit6) ^
+componentOf(?and8, ?pred) ^
+ExpressionObject(?comp8) ^
+componentOf(?comp8, ?simple8) ^
+componentOf(?simple8, ?and8) ^
+SimpleExpression(?simple8) ^
+ReferencedColumn(?col9) ^
+ExpressionObject(?col9) ^
+componentOf(?col9, ?simple8) ^
+componentOf(?lit7, ?simple8) ^
+ExpressionObject(?lit7)

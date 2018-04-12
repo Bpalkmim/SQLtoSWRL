@@ -1,0 +1,104 @@
+Predicate(?pred) ^
+hasDescription(?pred, "c_custkey = o_custkey AND l_orderkey = o_orderkey AND o_orderdate >= Date '1993-10-01' AND o_orderdate < Date '1993-10-01' + Interval '3 month' AND l_returnflag = 'R' AND c_nationkey = n_nationkey") ^
+ComparisonOperator(?comp1) ^
+hasDescription(?comp1, "=") ^
+hasDescription(?simple1, "c_custkey = o_custkey") ^
+Column(?col1) ^
+hasName(?col1, "c_custkey") ^
+Column(?col2) ^
+hasName(?col2, "o_custkey") ^
+ComparisonOperator(?comp2) ^
+hasDescription(?comp2, "=") ^
+hasDescription(?simple2, "l_orderkey = o_orderkey") ^
+Column(?col3) ^
+hasName(?col3, "l_orderkey") ^
+Column(?col4) ^
+hasName(?col4, "o_orderkey") ^
+ComparisonOperator(?comp3) ^
+hasDescription(?comp3, ">=") ^
+hasDescription(?simple3, "o_orderdate >= Date '1993-10-01'") ^
+Column(?col5) ^
+hasName(?col5, "o_orderdate") ^
+hasDescription(?lit1, "Date '1993-10-01'") ^
+ComparisonOperator(?comp4) ^
+hasDescription(?comp4, "<") ^
+hasDescription(?simple4, "o_orderdate < Date '1993-10-01' + Interval '3 month'") ^
+Column(?col6) ^
+hasName(?col6, "o_orderdate") ^
+hasDescription(?lit2, "Date '1993-10-01' + Interval '3 month'") ^
+ComparisonOperator(?comp5) ^
+hasDescription(?comp5, "=") ^
+hasDescription(?simple5, "l_returnflag = 'R'") ^
+Column(?col7) ^
+hasName(?col7, "l_returnflag") ^
+hasDescription(?lit3, 'R') ^
+ComparisonOperator(?comp6) ^
+hasDescription(?comp6, "=") ^
+hasDescription(?simple6, "c_nationkey = n_nationkey") ^
+Column(?col8) ^
+hasName(?col8, "c_nationkey") ^
+Column(?col9) ^
+hasName(?col9, "n_nationkey")
+-> componentOf(?and1, ?pred) ^
+ExpressionObject(?comp1) ^
+componentOf(?comp1, ?simple1) ^
+componentOf(?simple1, ?and1) ^
+SimpleExpression(?simple1) ^
+ReferencedColumn(?col1) ^
+ExpressionObject(?col1) ^
+componentOf(?col1, ?simple1) ^
+ReferencedColumn(?col2) ^
+ExpressionObject(?col2) ^
+componentOf(?col2, ?simple1) ^
+componentOf(?and2, ?pred) ^
+ExpressionObject(?comp2) ^
+componentOf(?comp2, ?simple2) ^
+componentOf(?simple2, ?and2) ^
+SimpleExpression(?simple2) ^
+ReferencedColumn(?col3) ^
+ExpressionObject(?col3) ^
+componentOf(?col3, ?simple2) ^
+ReferencedColumn(?col4) ^
+ExpressionObject(?col4) ^
+componentOf(?col4, ?simple2) ^
+componentOf(?and3, ?pred) ^
+ExpressionObject(?comp3) ^
+componentOf(?comp3, ?simple3) ^
+componentOf(?simple3, ?and3) ^
+SimpleExpression(?simple3) ^
+ReferencedColumn(?col5) ^
+ExpressionObject(?col5) ^
+componentOf(?col5, ?simple3) ^
+componentOf(?lit1, ?simple3) ^
+ExpressionObject(?lit1) ^
+componentOf(?and4, ?pred) ^
+ExpressionObject(?comp4) ^
+componentOf(?comp4, ?simple4) ^
+componentOf(?simple4, ?and4) ^
+SimpleExpression(?simple4) ^
+ReferencedColumn(?col6) ^
+ExpressionObject(?col6) ^
+componentOf(?col6, ?simple4) ^
+componentOf(?lit2, ?simple4) ^
+ExpressionObject(?lit2) ^
+componentOf(?and5, ?pred) ^
+ExpressionObject(?comp5) ^
+componentOf(?comp5, ?simple5) ^
+componentOf(?simple5, ?and5) ^
+SimpleExpression(?simple5) ^
+ReferencedColumn(?col7) ^
+ExpressionObject(?col7) ^
+componentOf(?col7, ?simple5) ^
+componentOf(?lit3, ?simple5) ^
+ExpressionObject(?lit3) ^
+componentOf(?and6, ?pred) ^
+ExpressionObject(?comp6) ^
+componentOf(?comp6, ?simple6) ^
+componentOf(?simple6, ?and6) ^
+SimpleExpression(?simple6) ^
+ReferencedColumn(?col8) ^
+ExpressionObject(?col8) ^
+componentOf(?col8, ?simple6) ^
+ReferencedColumn(?col9) ^
+ExpressionObject(?col9) ^
+componentOf(?col9, ?simple6)

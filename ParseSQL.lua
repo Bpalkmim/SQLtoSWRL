@@ -232,7 +232,7 @@ local function getGrammar()
 		-- Identificadores
 		columnName = taggedCap(tag["distinct"],
 			kw["distinct"] * space^1 * taggedCap(tag["colId"],
-				((schemaName * lpeg.P("."))^-1 * tableDBName * lpeg.P("."))^-1 
+				((schemaName * lpeg.P("."))^-1 * tableDBName * lpeg.P("."))^-1
 					* (lpeg.C(lpeg.P("*")) + lpeg.C(identifier))))
 			+ taggedCap(tag["colId"],
 				((schemaName * lpeg.P("."))^-1 * tableDBName * lpeg.P("."))^-1

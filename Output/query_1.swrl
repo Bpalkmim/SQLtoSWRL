@@ -1,0 +1,17 @@
+Predicate(?pred) ^
+hasDescription(?pred, "l_shipdate <= Date '1998-12-01' - Interval '87 days'") ^
+ComparisonOperator(?comp1) ^
+hasDescription(?comp1, "<=") ^
+hasDescription(?simple1, "l_shipdate <= Date '1998-12-01' - Interval '87 days'") ^
+Column(?col1) ^
+hasName(?col1, "l_shipdate") ^
+hasDescription(?lit1, "Date '1998-12-01' - Interval '87 days'")
+-> ExpressionObject(?comp1) ^
+componentOf(?comp1, ?simple1) ^
+componentOf(?simple1, ?pred) ^
+SimpleExpression(?simple1) ^
+ReferencedColumn(?col1) ^
+ExpressionObject(?col1) ^
+componentOf(?col1, ?simple1) ^
+componentOf(?lit1, ?simple1) ^
+ExpressionObject(?lit1)
