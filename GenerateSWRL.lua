@@ -171,7 +171,6 @@ local function turnToDNF(ast)
 
 				-- Caso nenhum Or tenha sido encontrado, o nó está em DNF
 				if foundOr == 0 then
-					print("oi")
 					return newAstNode
 				-- Caso contrário, precisamos da função novamente para trazer os Or
 				-- de dentro para a superfície

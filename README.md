@@ -22,7 +22,12 @@ if your version is 5.1, or
 
 if newer.
 
-### TODO
+These just run our test cases. If you wish to utilize the program for any other queries you have, just acces them via the functions:
 
-The next steps are to generate the SWRL rules based on the WHERE clauses of the SQL queries.
+``ParseSQL.parseInput(fileName)``
 
+from ``ParseSQL.lua`` to just generate the AST, or
+
+``GenerateSWRL.generateOutput(fileName, index)``
+
+from ``GenerateSWRL.lua``, which uses the previous function to generate the AST and creates a SWRL file.
