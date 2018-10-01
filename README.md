@@ -22,7 +22,7 @@ if your version is 5.1, or
 
 if newer.
 
-These just run our test cases. If you wish to utilize the program for any other queries you have, just acces them via the functions:
+These just run our test cases. If you wish to utilize the program for any other queries you have, just access them via the functions:
 
 ``ParseSQL.parseInput(fileName)``
 
