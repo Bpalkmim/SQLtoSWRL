@@ -243,9 +243,16 @@ local function scanAST(ast)
 
 	if ast["tag"] ~= nil then
 		if ast["tag"] == tag["and"] then
-			for _, v in ipairs(ast) do
+			for i, v in ipairs(ast) do
 				currAnd = currAnd + 1
-				retCon = retCon.."componentOf(?and"..currAnd..", ?pred) ^\n"
+				if i > 1 then
+					retAnt = retAnt.."swrlb:substringAfter(?and1, ?desc, \""..tag["and"].."\") ^\n"
+					for j=2,(i-1) do
+						retAnt = retAnt.."swrlb:substringAfter(?and"..j..", ?and"..(j-1)..", \""..tag["and"].."\") ^\n"
+					end
+					retAnt = retAnt.."swrlb:substringBefore(?and0, ?and"..(currAnd-1)..", \""..tag["and"].."\") ^\n"
+				end
+				retCon = retCon.."componentOf(?and"..(currAnd-1)..", ?pred) ^\n"
 				retAntAux, retConAux = scanAST(v)
 				retAnt = retAnt..retAntAux
 				retCon = retCon..retConAux
@@ -255,16 +262,29 @@ local function scanAST(ast)
 			table.insert(expList, ast)
 			table.insert(operList, ast[2])
 
+			-- TODO swrlb:matches com desc se currAnd == 0
+			if currAnd == 0 and currOr == 0 then
+				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
+			end
+
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", \""..ast[2].."\") ^\n"
-			retAnt = retAnt.."hasDescription(?simple"..#expList..", \""..formDescription(ast).."\") ^\n"
+			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
+			else
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
+			end
+			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
+			--retAnt = retAnt.."hasDescription(?simple"..#expList..", \""..formDescription(ast).."\") ^\n"
+
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
 				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..currAnd..") ^\n"
+				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -280,16 +300,27 @@ local function scanAST(ast)
 			table.insert(expList, ast)
 			table.insert(operList, "like")
 
+			-- TODO swrlb:matches com desc se currAnd == 0
+			if currAnd == 0 and currOr == 0 then
+				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
+			end
+
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", \"like\") ^\n"
-			retAnt = retAnt.."hasDescription(?simple"..#expList..", \""..formDescription(ast).."\") ^\n"
+			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
+			else
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
+			end
+			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
 				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..currAnd..") ^\n"
+				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -305,16 +336,27 @@ local function scanAST(ast)
 			table.insert(expList, ast)
 			table.insert(operList, "in")
 
+			-- TODO swrlb:matches com desc se currAnd == 0
+			if currAnd == 0 and currOr == 0 then
+				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
+			end
+
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", \"in\") ^\n"
-			retAnt = retAnt.."hasDescription(?simple"..#expList..", \""..formDescription(ast).."\") ^\n"
+			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
+			else
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
+			end
+			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
 				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..currAnd..") ^\n"
+				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -334,24 +376,36 @@ local function scanAST(ast)
 
 			table.insert(litList, list)
 
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..list.."\") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			-- TODO será necesário?
+			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..list.."\") ^\n"
+			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["between"] then
 			table.insert(expList, ast)
 			table.insert(operList, "between")
 
+			-- TODO swrlb:matches com desc se currAnd == 0
+			if currAnd == 0 and currOr == 0 then
+				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
+			end
+
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", \"between\") ^\n"
-			retAnt = retAnt.."hasDescription(?simple"..#expList..", \""..formDescription(ast).."\") ^\n"
+			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
+			else
+				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
+			end
+			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
 				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..currAnd..") ^\n"
+				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -364,21 +418,24 @@ local function scanAST(ast)
 			local desc = formDescription(ast[2]).." and "..formDescription(ast[3])
 			table.insert(litList, desc)
 
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..desc.."\") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			-- TODO será necessário?
+			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..desc.."\") ^\n"
+			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["mult"] or ast["tag"] == tag["add"] then
 			table.insert(litList, formDescription(ast))
 
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..formDescription(ast).."\") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			-- TODO será necessário?
+			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..formDescription(ast).."\") ^\n"
+			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["colId"] then
 			table.insert(idList, ast[1])
 			retAnt = retAnt.."Column(?col"..#idList..") ^\n"
-			retAnt = retAnt.."hasName(?col"..#idList..", \""..ast[1].."\") ^\n"
+			retAnt = retAnt.."hasName(?col"..#idList..", ?nameCol"..#idList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?nameCol"..#idList..") ^\n"
 
 			retCon = retCon.."ReferencedColumn(?col"..#idList..") ^\n"
 			retCon = retCon.."ExpressionObject(?col"..#idList..") ^\n"
@@ -387,16 +444,18 @@ local function scanAST(ast)
 		elseif ast["tag"] == tag["date"] or ast["tag"] == tag["interval"] then
 			table.insert(litList, ast["tag"].." "..formDescription(ast[1]))
 
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..formDescription(ast).."\") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			-- TODO será necessário?
+			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..formDescription(ast).."\") ^\n"
+			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["litString"] or ast["tag"] == tag["number"] then
 			table.insert(litList, ast[1])
 
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", "..formDescription(ast)..") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			-- TODO será necessário?
+			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", "..formDescription(ast)..") ^\n"
+			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		-- TODO demais nós
 		else
@@ -433,8 +492,19 @@ local function reachWhere(ast)
 
 				-- Cria uma regra para cada cláusula do Or
 				for i, v in ipairs(ast[1]) do
+					currOr = currOr + 1
 					retAnt = retAnt.."Predicate(?pred) ^\n"
-					retAnt = retAnt.."hasDescription(?pred, \""..formDescription(ast[1][i]).."\") ^\n"
+					retAnt = retAnt.."hasDescription(?pred, ?desc) ^\n"
+
+					if i == 1 then
+						retAnt = retAnt.."swrlb:substringBefore(?or"..(currOr-1)..", ?desc, \""..tag["or"].."\") ^\n"
+					else -- i > 1
+						retAnt = retAnt.."swrlb:substringAfter(?or1, ?desc, \""..tag["or"].."\") ^\n"
+						for j=2,(i-1) do
+							retAnt = retAnt.."swrlb:substringAfter(?or"..j..", ?or"..(j-1)..", \""..tag["or"].."\") ^\n"
+						end
+						retAnt = retAnt.."swrlb:substringBefore(?or0, ?or"..(currOr-1)..", \""..tag["or"].."\") ^\n"
+					end
 
 					retAntAux, retConAux = scanAST(v)
 					retAnt = retAnt..retAntAux
@@ -445,14 +515,16 @@ local function reachWhere(ast)
 					expList = {}
 					operList = {}
 					currAnd = 0
-					currOr = 0
 					retAnt = ""
 					retCon = ""
 				end
 
 			else -- Não foi encontrado OR; gera-se apenas uma regra.
 				retAnt = retAnt.."Predicate(?pred) ^\n"
-				retAnt = retAnt.."hasDescription(?pred, \""..formDescription(ast).."\") ^\n"
+				--retAnt = retAnt.."hasDescription(?pred, \""..formDescription(ast).."\") ^\n"
+				retAnt = retAnt.."hasDescription(?pred, ?desc) ^\n"
+				retAnt = retAnt.."swrlb:substringBefore(?and"..currAnd..", ?desc, \""..tag["and"].."\") ^\n"
+				retAnt = retAnt.."swrlb:substringBefore(?or"..currOr..", ?and"..currAnd..", \""..tag["or"].."\") ^\n"
 
 				retAntAux, retConAux = scanAST(ast[1])
 				retAnt = retAnt..retAntAux

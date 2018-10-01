@@ -1,17 +1,20 @@
 Predicate(?pred) ^
-hasDescription(?pred, "l_shipdate <= Date '1998-12-01' - Interval '87 days'") ^
+hasDescription(?pred, ?desc) ^
+swrlb:substringBefore(?and0, ?desc, "And") ^
+swrlb:substringBefore(?or0, ?and0, "Or") ^
+swrlb:matches(?desc, ?or0) ^
 ComparisonOperator(?comp1) ^
-hasDescription(?comp1, "<=") ^
-hasDescription(?simple1, "l_shipdate <= Date '1998-12-01' - Interval '87 days'") ^
+hasDescription(?comp1, ?dComp1) ^
+swrlb:contains(?desc, ?dComp1) ^
+swrlb:tokenize(?op1, ?or0, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
 Column(?col1) ^
-hasName(?col1, "l_shipdate") ^
-hasDescription(?lit1, "Date '1998-12-01' - Interval '87 days'")
+hasName(?col1, ?nameCol1) ^
+swrlb:contains(?desc, ?nameCol1)
 -> ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
 componentOf(?simple1, ?pred) ^
 SimpleExpression(?simple1) ^
 ReferencedColumn(?col1) ^
 ExpressionObject(?col1) ^
-componentOf(?col1, ?simple1) ^
-componentOf(?lit1, ?simple1) ^
-ExpressionObject(?lit1)
+componentOf(?col1, ?simple1)

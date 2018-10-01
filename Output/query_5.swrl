@@ -1,66 +1,77 @@
 Predicate(?pred) ^
-hasDescription(?pred, "l_shipdate >= Date '1994-01-01' AND l_shipdate < Date '1994-01-01' + Interval '1 year' AND l_discount between 0.06 - 0.01 and 0.06 + 0.01 AND l_quantity < 24") ^
+hasDescription(?pred, ?desc) ^
+swrlb:substringBefore(?and0, ?desc, "And") ^
+swrlb:substringBefore(?or0, ?and0, "Or") ^
 ComparisonOperator(?comp1) ^
-hasDescription(?comp1, ">=") ^
-hasDescription(?simple1, "l_shipdate >= Date '1994-01-01'") ^
+hasDescription(?comp1, ?dComp1) ^
+swrlb:contains(?desc, ?dComp1) ^
+swrlb:tokenize(?op1, ?and0, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
 Column(?col1) ^
-hasName(?col1, "l_shipdate") ^
-hasDescription(?lit1, "Date '1994-01-01'") ^
+hasName(?col1, ?nameCol1) ^
+swrlb:contains(?desc, ?nameCol1) ^
+swrlb:substringAfter(?and1, ?desc, "And") ^
+swrlb:substringBefore(?and0, ?and1, "And") ^
 ComparisonOperator(?comp2) ^
-hasDescription(?comp2, "<") ^
-hasDescription(?simple2, "l_shipdate < Date '1994-01-01' + Interval '1 year'") ^
+hasDescription(?comp2, ?dComp2) ^
+swrlb:contains(?desc, ?dComp2) ^
+swrlb:tokenize(?op2, ?and1, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp2, ?op2) ^
 Column(?col2) ^
-hasName(?col2, "l_shipdate") ^
-hasDescription(?lit2, "Date '1994-01-01' + Interval '1 year'") ^
+hasName(?col2, ?nameCol2) ^
+swrlb:contains(?desc, ?nameCol2) ^
+swrlb:substringAfter(?and1, ?desc, "And") ^
+swrlb:substringAfter(?and2, ?and1, "And") ^
+swrlb:substringBefore(?and0, ?and2, "And") ^
 ComparisonOperator(?comp3) ^
-hasDescription(?comp3, "between") ^
-hasDescription(?simple3, "l_discount between 0.06 - 0.01 and 0.06 + 0.01") ^
+hasDescription(?comp3, ?dComp3) ^
+swrlb:contains(?desc, ?dComp3) ^
+swrlb:tokenize(?op3, ?and2, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp3, ?op3) ^
 Column(?col3) ^
-hasName(?col3, "l_discount") ^
-hasDescription(?lit3, "0.06 - 0.01 and 0.06 + 0.01") ^
+hasName(?col3, ?nameCol3) ^
+swrlb:contains(?desc, ?nameCol3) ^
+swrlb:substringAfter(?and1, ?desc, "And") ^
+swrlb:substringAfter(?and2, ?and1, "And") ^
+swrlb:substringAfter(?and3, ?and2, "And") ^
+swrlb:substringBefore(?and0, ?and3, "And") ^
 ComparisonOperator(?comp4) ^
-hasDescription(?comp4, "<") ^
-hasDescription(?simple4, "l_quantity < 24") ^
+hasDescription(?comp4, ?dComp4) ^
+swrlb:contains(?desc, ?dComp4) ^
+swrlb:tokenize(?op4, ?and3, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp4, ?op4) ^
 Column(?col4) ^
-hasName(?col4, "l_quantity") ^
-hasDescription(?lit4, 24)
--> componentOf(?and1, ?pred) ^
+hasName(?col4, ?nameCol4) ^
+swrlb:contains(?desc, ?nameCol4)
+-> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
-componentOf(?simple1, ?and1) ^
+componentOf(?simple1, ?and0) ^
 SimpleExpression(?simple1) ^
 ReferencedColumn(?col1) ^
 ExpressionObject(?col1) ^
 componentOf(?col1, ?simple1) ^
-componentOf(?lit1, ?simple1) ^
-ExpressionObject(?lit1) ^
-componentOf(?and2, ?pred) ^
+componentOf(?and1, ?pred) ^
 ExpressionObject(?comp2) ^
 componentOf(?comp2, ?simple2) ^
-componentOf(?simple2, ?and2) ^
+componentOf(?simple2, ?and1) ^
 SimpleExpression(?simple2) ^
 ReferencedColumn(?col2) ^
 ExpressionObject(?col2) ^
 componentOf(?col2, ?simple2) ^
-componentOf(?lit2, ?simple2) ^
-ExpressionObject(?lit2) ^
-componentOf(?and3, ?pred) ^
+componentOf(?and2, ?pred) ^
 ExpressionObject(?comp3) ^
 componentOf(?comp3, ?simple3) ^
-componentOf(?simple3, ?and3) ^
+componentOf(?simple3, ?and2) ^
 SimpleExpression(?simple3) ^
 ReferencedColumn(?col3) ^
 ExpressionObject(?col3) ^
 componentOf(?col3, ?simple3) ^
-componentOf(?lit3, ?simple3) ^
-ExpressionObject(?lit3) ^
-componentOf(?and4, ?pred) ^
+componentOf(?and3, ?pred) ^
 ExpressionObject(?comp4) ^
 componentOf(?comp4, ?simple4) ^
-componentOf(?simple4, ?and4) ^
+componentOf(?simple4, ?and3) ^
 SimpleExpression(?simple4) ^
 ReferencedColumn(?col4) ^
 ExpressionObject(?col4) ^
-componentOf(?col4, ?simple4) ^
-componentOf(?lit4, ?simple4) ^
-ExpressionObject(?lit4)
+componentOf(?col4, ?simple4)

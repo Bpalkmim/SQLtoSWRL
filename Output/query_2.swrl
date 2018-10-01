@@ -1,51 +1,79 @@
 Predicate(?pred) ^
-hasDescription(?pred, "c_mktsegment = 'BUILDING' AND c_custkey = o_custkey AND l_orderkey = o_orderkey AND o_orderdate < Date '1995-03-15' AND l_shipdate > Date '1995-03-15'") ^
+hasDescription(?pred, ?desc) ^
+swrlb:substringBefore(?and0, ?desc, "And") ^
+swrlb:substringBefore(?or0, ?and0, "Or") ^
 ComparisonOperator(?comp1) ^
-hasDescription(?comp1, "=") ^
-hasDescription(?simple1, "c_mktsegment = 'BUILDING'") ^
+hasDescription(?comp1, ?dComp1) ^
+swrlb:contains(?desc, ?dComp1) ^
+swrlb:tokenize(?op1, ?and0, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
 Column(?col1) ^
-hasName(?col1, "c_mktsegment") ^
-hasDescription(?lit1, 'BUILDING') ^
+hasName(?col1, ?nameCol1) ^
+swrlb:contains(?desc, ?nameCol1) ^
+swrlb:substringAfter(?and1, ?desc, "And") ^
+swrlb:substringBefore(?and0, ?and1, "And") ^
 ComparisonOperator(?comp2) ^
-hasDescription(?comp2, "=") ^
-hasDescription(?simple2, "c_custkey = o_custkey") ^
+hasDescription(?comp2, ?dComp2) ^
+swrlb:contains(?desc, ?dComp2) ^
+swrlb:tokenize(?op2, ?and1, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp2, ?op2) ^
 Column(?col2) ^
-hasName(?col2, "c_custkey") ^
+hasName(?col2, ?nameCol2) ^
+swrlb:contains(?desc, ?nameCol2) ^
 Column(?col3) ^
-hasName(?col3, "o_custkey") ^
+hasName(?col3, ?nameCol3) ^
+swrlb:contains(?desc, ?nameCol3) ^
+swrlb:substringAfter(?and1, ?desc, "And") ^
+swrlb:substringAfter(?and2, ?and1, "And") ^
+swrlb:substringBefore(?and0, ?and2, "And") ^
 ComparisonOperator(?comp3) ^
-hasDescription(?comp3, "=") ^
-hasDescription(?simple3, "l_orderkey = o_orderkey") ^
+hasDescription(?comp3, ?dComp3) ^
+swrlb:contains(?desc, ?dComp3) ^
+swrlb:tokenize(?op3, ?and2, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp3, ?op3) ^
 Column(?col4) ^
-hasName(?col4, "l_orderkey") ^
+hasName(?col4, ?nameCol4) ^
+swrlb:contains(?desc, ?nameCol4) ^
 Column(?col5) ^
-hasName(?col5, "o_orderkey") ^
+hasName(?col5, ?nameCol5) ^
+swrlb:contains(?desc, ?nameCol5) ^
+swrlb:substringAfter(?and1, ?desc, "And") ^
+swrlb:substringAfter(?and2, ?and1, "And") ^
+swrlb:substringAfter(?and3, ?and2, "And") ^
+swrlb:substringBefore(?and0, ?and3, "And") ^
 ComparisonOperator(?comp4) ^
-hasDescription(?comp4, "<") ^
-hasDescription(?simple4, "o_orderdate < Date '1995-03-15'") ^
+hasDescription(?comp4, ?dComp4) ^
+swrlb:contains(?desc, ?dComp4) ^
+swrlb:tokenize(?op4, ?and3, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp4, ?op4) ^
 Column(?col6) ^
-hasName(?col6, "o_orderdate") ^
-hasDescription(?lit2, "Date '1995-03-15'") ^
+hasName(?col6, ?nameCol6) ^
+swrlb:contains(?desc, ?nameCol6) ^
+swrlb:substringAfter(?and1, ?desc, "And") ^
+swrlb:substringAfter(?and2, ?and1, "And") ^
+swrlb:substringAfter(?and3, ?and2, "And") ^
+swrlb:substringAfter(?and4, ?and3, "And") ^
+swrlb:substringBefore(?and0, ?and4, "And") ^
 ComparisonOperator(?comp5) ^
-hasDescription(?comp5, ">") ^
-hasDescription(?simple5, "l_shipdate > Date '1995-03-15'") ^
+hasDescription(?comp5, ?dComp5) ^
+swrlb:contains(?desc, ?dComp5) ^
+swrlb:tokenize(?op5, ?and4, " ") ^
+swrlb:stringEqualIgnoreCase(?dComp5, ?op5) ^
 Column(?col7) ^
-hasName(?col7, "l_shipdate") ^
-hasDescription(?lit3, "Date '1995-03-15'")
--> componentOf(?and1, ?pred) ^
+hasName(?col7, ?nameCol7) ^
+swrlb:contains(?desc, ?nameCol7)
+-> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
-componentOf(?simple1, ?and1) ^
+componentOf(?simple1, ?and0) ^
 SimpleExpression(?simple1) ^
 ReferencedColumn(?col1) ^
 ExpressionObject(?col1) ^
 componentOf(?col1, ?simple1) ^
-componentOf(?lit1, ?simple1) ^
-ExpressionObject(?lit1) ^
-componentOf(?and2, ?pred) ^
+componentOf(?and1, ?pred) ^
 ExpressionObject(?comp2) ^
 componentOf(?comp2, ?simple2) ^
-componentOf(?simple2, ?and2) ^
+componentOf(?simple2, ?and1) ^
 SimpleExpression(?simple2) ^
 ReferencedColumn(?col2) ^
 ExpressionObject(?col2) ^
@@ -53,10 +81,10 @@ componentOf(?col2, ?simple2) ^
 ReferencedColumn(?col3) ^
 ExpressionObject(?col3) ^
 componentOf(?col3, ?simple2) ^
-componentOf(?and3, ?pred) ^
+componentOf(?and2, ?pred) ^
 ExpressionObject(?comp3) ^
 componentOf(?comp3, ?simple3) ^
-componentOf(?simple3, ?and3) ^
+componentOf(?simple3, ?and2) ^
 SimpleExpression(?simple3) ^
 ReferencedColumn(?col4) ^
 ExpressionObject(?col4) ^
@@ -64,23 +92,19 @@ componentOf(?col4, ?simple3) ^
 ReferencedColumn(?col5) ^
 ExpressionObject(?col5) ^
 componentOf(?col5, ?simple3) ^
-componentOf(?and4, ?pred) ^
+componentOf(?and3, ?pred) ^
 ExpressionObject(?comp4) ^
 componentOf(?comp4, ?simple4) ^
-componentOf(?simple4, ?and4) ^
+componentOf(?simple4, ?and3) ^
 SimpleExpression(?simple4) ^
 ReferencedColumn(?col6) ^
 ExpressionObject(?col6) ^
 componentOf(?col6, ?simple4) ^
-componentOf(?lit2, ?simple4) ^
-ExpressionObject(?lit2) ^
-componentOf(?and5, ?pred) ^
+componentOf(?and4, ?pred) ^
 ExpressionObject(?comp5) ^
 componentOf(?comp5, ?simple5) ^
-componentOf(?simple5, ?and5) ^
+componentOf(?simple5, ?and4) ^
 SimpleExpression(?simple5) ^
 ReferencedColumn(?col7) ^
 ExpressionObject(?col7) ^
-componentOf(?col7, ?simple5) ^
-componentOf(?lit3, ?simple5) ^
-ExpressionObject(?lit3)
+componentOf(?col7, ?simple5)
