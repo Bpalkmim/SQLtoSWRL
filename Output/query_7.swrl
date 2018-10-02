@@ -7,6 +7,7 @@ hasDescription(?comp1, ?dComp1) ^
 swrlb:contains(?desc, ?dComp1) ^
 swrlb:tokenize(?op1, ?and0, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
+swrlx:makeOWLThing(?simple1, ?and0) ^
 Column(?col1) ^
 hasName(?col1, ?nameCol1) ^
 swrlb:contains(?desc, ?nameCol1) ^
@@ -20,6 +21,7 @@ hasDescription(?comp2, ?dComp2) ^
 swrlb:contains(?desc, ?dComp2) ^
 swrlb:tokenize(?op2, ?and1, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp2, ?op2) ^
+swrlx:makeOWLThing(?simple2, ?and1) ^
 Column(?col3) ^
 hasName(?col3, ?nameCol3) ^
 swrlb:contains(?desc, ?nameCol3) ^
@@ -34,6 +36,7 @@ hasDescription(?comp3, ?dComp3) ^
 swrlb:contains(?desc, ?dComp3) ^
 swrlb:tokenize(?op3, ?and2, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp3, ?op3) ^
+swrlx:makeOWLThing(?simple3, ?and2) ^
 Column(?col5) ^
 hasName(?col5, ?nameCol5) ^
 swrlb:contains(?desc, ?nameCol5) ^
@@ -49,6 +52,7 @@ hasDescription(?comp4, ?dComp4) ^
 swrlb:contains(?desc, ?dComp4) ^
 swrlb:tokenize(?op4, ?and3, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp4, ?op4) ^
+swrlx:makeOWLThing(?simple4, ?and3) ^
 Column(?col7) ^
 hasName(?col7, ?nameCol7) ^
 swrlb:contains(?desc, ?nameCol7) ^
@@ -65,6 +69,7 @@ hasDescription(?comp5, ?dComp5) ^
 swrlb:contains(?desc, ?dComp5) ^
 swrlb:tokenize(?op5, ?and4, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp5, ?op5) ^
+swrlx:makeOWLThing(?simple5, ?and4) ^
 Column(?col9) ^
 hasName(?col9, ?nameCol9) ^
 swrlb:contains(?desc, ?nameCol9) ^
@@ -82,6 +87,7 @@ hasDescription(?comp6, ?dComp6) ^
 swrlb:contains(?desc, ?dComp6) ^
 swrlb:tokenize(?op6, ?and5, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp6, ?op6) ^
+swrlx:makeOWLThing(?simple6, ?and5) ^
 Column(?col11) ^
 hasName(?col11, ?nameCol11) ^
 swrlb:contains(?desc, ?nameCol11) ^
@@ -100,6 +106,7 @@ hasDescription(?comp7, ?dComp7) ^
 swrlb:contains(?desc, ?dComp7) ^
 swrlb:tokenize(?op7, ?and6, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp7, ?op7) ^
+swrlx:makeOWLThing(?simple7, ?and6) ^
 Column(?col13) ^
 hasName(?col13, ?nameCol13) ^
 swrlb:contains(?desc, ?nameCol13) ^
@@ -116,6 +123,7 @@ hasDescription(?comp8, ?dComp8) ^
 swrlb:contains(?desc, ?dComp8) ^
 swrlb:tokenize(?op8, ?and7, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp8, ?op8) ^
+swrlx:makeOWLThing(?simple8, ?and7) ^
 Column(?col14) ^
 hasName(?col14, ?nameCol14) ^
 swrlb:contains(?desc, ?nameCol14) ^
@@ -133,6 +141,7 @@ hasDescription(?comp9, ?dComp9) ^
 swrlb:contains(?desc, ?dComp9) ^
 swrlb:tokenize(?op9, ?and8, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp9, ?op9) ^
+swrlx:makeOWLThing(?simple9, ?and8) ^
 Column(?col15) ^
 hasName(?col15, ?nameCol15) ^
 swrlb:contains(?desc, ?nameCol15)

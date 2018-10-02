@@ -276,8 +276,11 @@ local function scanAST(ast)
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
 			end
 			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
-			--retAnt = retAnt.."hasDescription(?simple"..#expList..", \""..formDescription(ast).."\") ^\n"
-
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?pred) ^\n"
+			else
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
@@ -314,6 +317,11 @@ local function scanAST(ast)
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
 			end
 			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?pred) ^\n"
+			else
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
@@ -350,6 +358,11 @@ local function scanAST(ast)
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
 			end
 			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?pred) ^\n"
+			else
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
@@ -399,6 +412,11 @@ local function scanAST(ast)
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?and"..(currAnd-1)..", \" \") ^\n"
 			end
 			retAnt = retAnt.."swrlb:stringEqualIgnoreCase(?dComp"..#operList..", ?op"..#operList..") ^\n"
+			if currAnd == 0 then
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?pred) ^\n"
+			else
+				retAnt = retAnt.."swrlx:makeOWLThing(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
 			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"

@@ -8,6 +8,7 @@ hasDescription(?comp1, ?dComp1) ^
 swrlb:contains(?desc, ?dComp1) ^
 swrlb:tokenize(?op1, ?or0, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
+swrlx:makeOWLThing(?simple1, ?pred) ^
 Column(?col1) ^
 hasName(?col1, ?nameCol1) ^
 swrlb:contains(?desc, ?nameCol1)
