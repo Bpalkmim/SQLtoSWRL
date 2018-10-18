@@ -246,11 +246,11 @@ local function scanAST(ast)
 			for i, v in ipairs(ast) do
 				currAnd = currAnd + 1
 				if i > 1 then
-					retAnt = retAnt.."swrlb:substringAfter(?and1, ?desc, \""..tag["and"].."\") ^\n"
+					retAnt = retAnt.."swrlb:substringAfter(?and1, ?desc, \" "..tag["and"].." \") ^\n"
 					for j=2,(i-1) do
-						retAnt = retAnt.."swrlb:substringAfter(?and"..j..", ?and"..(j-1)..", \""..tag["and"].."\") ^\n"
+						retAnt = retAnt.."swrlb:substringAfter(?and"..j..", ?and"..(j-1)..", \" "..tag["and"].." \") ^\n"
 					end
-					retAnt = retAnt.."swrlb:substringBefore(?and0, ?and"..(currAnd-1)..", \""..tag["and"].."\") ^\n"
+					retAnt = retAnt.."swrlb:substringBefore(?and0, ?and"..(currAnd-1)..", \" "..tag["and"].." \") ^\n"
 				end
 				retCon = retCon.."componentOf(?and"..(currAnd-1)..", ?pred) ^\n"
 				retAntAux, retConAux = scanAST(v)
@@ -262,7 +262,6 @@ local function scanAST(ast)
 			table.insert(expList, ast)
 			table.insert(operList, ast[2])
 
-			-- TODO swrlb:matches com desc se currAnd == 0
 			if currAnd == 0 and currOr == 0 then
 				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
 			end
@@ -293,9 +292,16 @@ local function scanAST(ast)
 
 			-- Chamadas para as partes esquerda e direita da expressão comparativa
 			retAntAux, retConAux = scanAST(ast[1])
+			if ast[1]["tag"] ~= tag["colId"] then -- É um literal
+				retAnt = retAnt.."swrlb:substringBefore(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			end
 			retAnt = retAnt..retAntAux
 			retCon = retCon..retConAux
+
 			retAntAux, retConAux = scanAST(ast[3])
+			if ast[3]["tag"] ~= tag["colId"] then -- É um literal
+				retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			end
 			retAnt = retAnt..retAntAux
 			retCon = retCon..retConAux
 
@@ -303,7 +309,6 @@ local function scanAST(ast)
 			table.insert(expList, ast)
 			table.insert(operList, "like")
 
-			-- TODO swrlb:matches com desc se currAnd == 0
 			if currAnd == 0 and currOr == 0 then
 				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
 			end
@@ -334,9 +339,16 @@ local function scanAST(ast)
 
 			-- Chamadas para as partes esquerda e direita do Like
 			retAntAux, retConAux = scanAST(ast[1])
+			if ast[1]["tag"] ~= tag["colId"] then -- É um literal
+				retAnt = retAnt.."swrlb:substringBefore(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			end
 			retAnt = retAnt..retAntAux
 			retCon = retCon..retConAux
+
 			retAntAux, retConAux = scanAST(ast[2])
+			if ast[2]["tag"] ~= tag["colId"] then -- É um literal
+				retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			end
 			retAnt = retAnt..retAntAux
 			retCon = retCon..retConAux
 
@@ -344,7 +356,6 @@ local function scanAST(ast)
 			table.insert(expList, ast)
 			table.insert(operList, "in")
 
-			-- TODO swrlb:matches com desc se currAnd == 0
 			if currAnd == 0 and currOr == 0 then
 				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
 			end
@@ -373,8 +384,11 @@ local function scanAST(ast)
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
-			-- Chamadas para as partes esquerda do In
+			-- Chamadas para a parte esquerda do In
 			retAntAux, retConAux = scanAST(ast[1])
+			if ast[1]["tag"] ~= tag["colId"] then -- É um literal
+				retAnt = retAnt.."swrlb:substringBefore(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			end
 			retAnt = retAnt..retAntAux
 			retCon = retCon..retConAux
 
@@ -389,16 +403,16 @@ local function scanAST(ast)
 
 			table.insert(litList, list)
 
-			-- TODO será necesário?
-			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..list.."\") ^\n"
-			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["between"] then
 			table.insert(expList, ast)
 			table.insert(operList, "between")
 
-			-- TODO swrlb:matches com desc se currAnd == 0
 			if currAnd == 0 and currOr == 0 then
 				retAnt = retAnt.."swrlb:matches(?desc, ?or"..currOr..") ^\n"
 			end
@@ -429,6 +443,9 @@ local function scanAST(ast)
 
 			-- Chamadas para a parte esquerda
 			retAntAux, retConAux = scanAST(ast[1])
+			if ast[1]["tag"] ~= tag["colId"] then -- É um literal
+				retAnt = retAnt.."swrlb:substringBefore(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			end
 			retAnt = retAnt..retAntAux
 			retCon = retCon..retConAux
 
@@ -436,18 +453,19 @@ local function scanAST(ast)
 			local desc = formDescription(ast[2]).." and "..formDescription(ast[3])
 			table.insert(litList, desc)
 
-			-- TODO será necessário?
-			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..desc.."\") ^\n"
-			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["mult"] or ast["tag"] == tag["add"] then
 			table.insert(litList, formDescription(ast))
 
-			-- TODO será necessário?
-			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..formDescription(ast).."\") ^\n"
-			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["colId"] then
 			table.insert(idList, ast[1])
@@ -462,18 +480,18 @@ local function scanAST(ast)
 		elseif ast["tag"] == tag["date"] or ast["tag"] == tag["interval"] then
 			table.insert(litList, ast["tag"].." "..formDescription(ast[1]))
 
-			-- TODO será necessário?
-			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", \""..formDescription(ast).."\") ^\n"
-			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["litString"] or ast["tag"] == tag["number"] then
 			table.insert(litList, ast[1])
 
-			-- TODO será necessário?
-			-- retAnt = retAnt.."hasDescription(?lit"..#litList..", "..formDescription(ast)..") ^\n"
-			-- retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
-			-- retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
+			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		-- TODO demais nós
 		else
@@ -515,13 +533,13 @@ local function reachWhere(ast)
 					retAnt = retAnt.."hasDescription(?pred, ?desc) ^\n"
 
 					if i == 1 then
-						retAnt = retAnt.."swrlb:substringBefore(?or"..(currOr-1)..", ?desc, \""..tag["or"].."\") ^\n"
+						retAnt = retAnt.."swrlb:substringBefore(?or"..(currOr-1)..", ?desc, \" "..tag["or"].." \") ^\n"
 					else -- i > 1
-						retAnt = retAnt.."swrlb:substringAfter(?or1, ?desc, \""..tag["or"].."\") ^\n"
+						retAnt = retAnt.."swrlb:substringAfter(?or1, ?desc, \" "..tag["or"].." \") ^\n"
 						for j=2,(i-1) do
-							retAnt = retAnt.."swrlb:substringAfter(?or"..j..", ?or"..(j-1)..", \""..tag["or"].."\") ^\n"
+							retAnt = retAnt.."swrlb:substringAfter(?or"..j..", ?or"..(j-1)..", \" "..tag["or"].." \") ^\n"
 						end
-						retAnt = retAnt.."swrlb:substringBefore(?or0, ?or"..(currOr-1)..", \""..tag["or"].."\") ^\n"
+						retAnt = retAnt.."swrlb:substringBefore(?or0, ?or"..(currOr-1)..", \" "..tag["or"].." \") ^\n"
 					end
 
 					retAntAux, retConAux = scanAST(v)
@@ -541,8 +559,8 @@ local function reachWhere(ast)
 				retAnt = retAnt.."Predicate(?pred) ^\n"
 				--retAnt = retAnt.."hasDescription(?pred, \""..formDescription(ast).."\") ^\n"
 				retAnt = retAnt.."hasDescription(?pred, ?desc) ^\n"
-				retAnt = retAnt.."swrlb:substringBefore(?and"..currAnd..", ?desc, \""..tag["and"].."\") ^\n"
-				retAnt = retAnt.."swrlb:substringBefore(?or"..currOr..", ?and"..currAnd..", \""..tag["or"].."\") ^\n"
+				retAnt = retAnt.."swrlb:substringBefore(?and"..currAnd..", ?desc, \" "..tag["and"].." \") ^\n"
+				retAnt = retAnt.."swrlb:substringBefore(?or"..currOr..", ?and"..currAnd..", \" "..tag["or"].." \") ^\n"
 
 				retAntAux, retConAux = scanAST(ast[1])
 				retAnt = retAnt..retAntAux

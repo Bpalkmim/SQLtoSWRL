@@ -1,6 +1,6 @@
 Predicate(?pred) ^
 hasDescription(?pred, ?desc) ^
-swrlb:substringBefore(?or0, ?desc, "Or") ^
+swrlb:substringBefore(?or0, ?desc, " Or ") ^
 ComparisonOperator(?comp1) ^
 hasDescription(?comp1, ?dComp1) ^
 swrlb:contains(?desc, ?dComp1) ^
@@ -13,8 +13,8 @@ swrlb:contains(?desc, ?nameCol1) ^
 Column(?col2) ^
 hasName(?col2, ?nameCol2) ^
 swrlb:contains(?desc, ?nameCol2) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringBefore(?and0, ?and1, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringBefore(?and0, ?and1, " And ") ^
 ComparisonOperator(?comp2) ^
 hasDescription(?comp2, ?dComp2) ^
 swrlb:contains(?desc, ?dComp2) ^
@@ -27,9 +27,9 @@ swrlb:contains(?desc, ?nameCol3) ^
 Column(?col4) ^
 hasName(?col4, ?nameCol4) ^
 swrlb:contains(?desc, ?nameCol4) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringBefore(?and0, ?and2, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringBefore(?and0, ?and2, " And ") ^
 ComparisonOperator(?comp3) ^
 hasDescription(?comp3, ?dComp3) ^
 swrlb:contains(?desc, ?dComp3) ^
@@ -42,10 +42,10 @@ swrlb:contains(?desc, ?nameCol5) ^
 Column(?col6) ^
 hasName(?col6, ?nameCol6) ^
 swrlb:contains(?desc, ?nameCol6) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringAfter(?and3, ?and2, "And") ^
-swrlb:substringBefore(?and0, ?and3, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringAfter(?and3, ?and2, " And ") ^
+swrlb:substringBefore(?and0, ?and3, " And ") ^
 ComparisonOperator(?comp4) ^
 hasDescription(?comp4, ?dComp4) ^
 swrlb:contains(?desc, ?dComp4) ^
@@ -58,11 +58,11 @@ swrlb:contains(?desc, ?nameCol7) ^
 Column(?col8) ^
 hasName(?col8, ?nameCol8) ^
 swrlb:contains(?desc, ?nameCol8) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringAfter(?and3, ?and2, "And") ^
-swrlb:substringAfter(?and4, ?and3, "And") ^
-swrlb:substringBefore(?and0, ?and4, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringAfter(?and3, ?and2, " And ") ^
+swrlb:substringAfter(?and4, ?and3, " And ") ^
+swrlb:substringBefore(?and0, ?and4, " And ") ^
 ComparisonOperator(?comp5) ^
 hasDescription(?comp5, ?dComp5) ^
 swrlb:contains(?desc, ?dComp5) ^
@@ -72,12 +72,15 @@ swrlx:makeOWLThing(?simple5, ?and4) ^
 Column(?col9) ^
 hasName(?col9, ?nameCol9) ^
 swrlb:contains(?desc, ?nameCol9) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringAfter(?and3, ?and2, "And") ^
-swrlb:substringAfter(?and4, ?and3, "And") ^
-swrlb:substringAfter(?and5, ?and4, "And") ^
-swrlb:substringBefore(?and0, ?and5, "And") ^
+swrlb:substringAfter(?lit1, ?simple5, ?dcomp5) ^
+hasDescription(?lit1, dLit1) ^
+swrlb:contains(?desc, ?dLit1) ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringAfter(?and3, ?and2, " And ") ^
+swrlb:substringAfter(?and4, ?and3, " And ") ^
+swrlb:substringAfter(?and5, ?and4, " And ") ^
+swrlb:substringBefore(?and0, ?and5, " And ") ^
 ComparisonOperator(?comp6) ^
 hasDescription(?comp6, ?dComp6) ^
 swrlb:contains(?desc, ?dComp6) ^
@@ -86,7 +89,10 @@ swrlb:stringEqualIgnoreCase(?dComp6, ?op6) ^
 swrlx:makeOWLThing(?simple6, ?and5) ^
 Column(?col10) ^
 hasName(?col10, ?nameCol10) ^
-swrlb:contains(?desc, ?nameCol10)
+swrlb:contains(?desc, ?nameCol10) ^
+swrlb:substringAfter(?lit2, ?simple6, ?dcomp6) ^
+hasDescription(?lit2, dLit2) ^
+swrlb:contains(?desc, ?dLit2)
 -> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
@@ -139,6 +145,8 @@ SimpleExpression(?simple5) ^
 ReferencedColumn(?col9) ^
 ExpressionObject(?col9) ^
 componentOf(?col9, ?simple5) ^
+componentOf(?lit1, ?simple5) ^
+ExpressionObject(?lit1) ^
 componentOf(?and5, ?pred) ^
 ExpressionObject(?comp6) ^
 componentOf(?comp6, ?simple6) ^
@@ -146,12 +154,14 @@ componentOf(?simple6, ?and5) ^
 SimpleExpression(?simple6) ^
 ReferencedColumn(?col10) ^
 ExpressionObject(?col10) ^
-componentOf(?col10, ?simple6)
+componentOf(?col10, ?simple6) ^
+componentOf(?lit2, ?simple6) ^
+ExpressionObject(?lit2)
 
 Predicate(?pred) ^
 hasDescription(?pred, ?desc) ^
-swrlb:substringAfter(?or1, ?desc, "Or") ^
-swrlb:substringBefore(?or0, ?or1, "Or") ^
+swrlb:substringAfter(?or1, ?desc, " Or ") ^
+swrlb:substringBefore(?or0, ?or1, " Or ") ^
 ComparisonOperator(?comp1) ^
 hasDescription(?comp1, ?dComp1) ^
 swrlb:contains(?desc, ?dComp1) ^
@@ -164,8 +174,8 @@ swrlb:contains(?desc, ?nameCol1) ^
 Column(?col2) ^
 hasName(?col2, ?nameCol2) ^
 swrlb:contains(?desc, ?nameCol2) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringBefore(?and0, ?and1, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringBefore(?and0, ?and1, " And ") ^
 ComparisonOperator(?comp2) ^
 hasDescription(?comp2, ?dComp2) ^
 swrlb:contains(?desc, ?dComp2) ^
@@ -178,9 +188,9 @@ swrlb:contains(?desc, ?nameCol3) ^
 Column(?col4) ^
 hasName(?col4, ?nameCol4) ^
 swrlb:contains(?desc, ?nameCol4) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringBefore(?and0, ?and2, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringBefore(?and0, ?and2, " And ") ^
 ComparisonOperator(?comp3) ^
 hasDescription(?comp3, ?dComp3) ^
 swrlb:contains(?desc, ?dComp3) ^
@@ -193,10 +203,10 @@ swrlb:contains(?desc, ?nameCol5) ^
 Column(?col6) ^
 hasName(?col6, ?nameCol6) ^
 swrlb:contains(?desc, ?nameCol6) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringAfter(?and3, ?and2, "And") ^
-swrlb:substringBefore(?and0, ?and3, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringAfter(?and3, ?and2, " And ") ^
+swrlb:substringBefore(?and0, ?and3, " And ") ^
 ComparisonOperator(?comp4) ^
 hasDescription(?comp4, ?dComp4) ^
 swrlb:contains(?desc, ?dComp4) ^
@@ -209,11 +219,11 @@ swrlb:contains(?desc, ?nameCol7) ^
 Column(?col8) ^
 hasName(?col8, ?nameCol8) ^
 swrlb:contains(?desc, ?nameCol8) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringAfter(?and3, ?and2, "And") ^
-swrlb:substringAfter(?and4, ?and3, "And") ^
-swrlb:substringBefore(?and0, ?and4, "And") ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringAfter(?and3, ?and2, " And ") ^
+swrlb:substringAfter(?and4, ?and3, " And ") ^
+swrlb:substringBefore(?and0, ?and4, " And ") ^
 ComparisonOperator(?comp5) ^
 hasDescription(?comp5, ?dComp5) ^
 swrlb:contains(?desc, ?dComp5) ^
@@ -223,12 +233,15 @@ swrlx:makeOWLThing(?simple5, ?and4) ^
 Column(?col9) ^
 hasName(?col9, ?nameCol9) ^
 swrlb:contains(?desc, ?nameCol9) ^
-swrlb:substringAfter(?and1, ?desc, "And") ^
-swrlb:substringAfter(?and2, ?and1, "And") ^
-swrlb:substringAfter(?and3, ?and2, "And") ^
-swrlb:substringAfter(?and4, ?and3, "And") ^
-swrlb:substringAfter(?and5, ?and4, "And") ^
-swrlb:substringBefore(?and0, ?and5, "And") ^
+swrlb:substringAfter(?lit1, ?simple5, ?dcomp5) ^
+hasDescription(?lit1, dLit1) ^
+swrlb:contains(?desc, ?dLit1) ^
+swrlb:substringAfter(?and1, ?desc, " And ") ^
+swrlb:substringAfter(?and2, ?and1, " And ") ^
+swrlb:substringAfter(?and3, ?and2, " And ") ^
+swrlb:substringAfter(?and4, ?and3, " And ") ^
+swrlb:substringAfter(?and5, ?and4, " And ") ^
+swrlb:substringBefore(?and0, ?and5, " And ") ^
 ComparisonOperator(?comp6) ^
 hasDescription(?comp6, ?dComp6) ^
 swrlb:contains(?desc, ?dComp6) ^
@@ -237,7 +250,10 @@ swrlb:stringEqualIgnoreCase(?dComp6, ?op6) ^
 swrlx:makeOWLThing(?simple6, ?and5) ^
 Column(?col10) ^
 hasName(?col10, ?nameCol10) ^
-swrlb:contains(?desc, ?nameCol10)
+swrlb:contains(?desc, ?nameCol10) ^
+swrlb:substringAfter(?lit2, ?simple6, ?dcomp6) ^
+hasDescription(?lit2, dLit2) ^
+swrlb:contains(?desc, ?dLit2)
 -> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
@@ -290,6 +306,8 @@ SimpleExpression(?simple5) ^
 ReferencedColumn(?col9) ^
 ExpressionObject(?col9) ^
 componentOf(?col9, ?simple5) ^
+componentOf(?lit1, ?simple5) ^
+ExpressionObject(?lit1) ^
 componentOf(?and5, ?pred) ^
 ExpressionObject(?comp6) ^
 componentOf(?comp6, ?simple6) ^
@@ -297,4 +315,6 @@ componentOf(?simple6, ?and5) ^
 SimpleExpression(?simple6) ^
 ReferencedColumn(?col10) ^
 ExpressionObject(?col10) ^
-componentOf(?col10, ?simple6)
+componentOf(?col10, ?simple6) ^
+componentOf(?lit2, ?simple6) ^
+ExpressionObject(?lit2)

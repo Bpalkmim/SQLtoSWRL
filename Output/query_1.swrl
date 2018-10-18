@@ -1,7 +1,7 @@
 Predicate(?pred) ^
 hasDescription(?pred, ?desc) ^
-swrlb:substringBefore(?and0, ?desc, "And") ^
-swrlb:substringBefore(?or0, ?and0, "Or") ^
+swrlb:substringBefore(?and0, ?desc, " And ") ^
+swrlb:substringBefore(?or0, ?and0, " Or ") ^
 swrlb:matches(?desc, ?or0) ^
 ComparisonOperator(?comp1) ^
 hasDescription(?comp1, ?dComp1) ^
@@ -11,11 +11,16 @@ swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
 swrlx:makeOWLThing(?simple1, ?pred) ^
 Column(?col1) ^
 hasName(?col1, ?nameCol1) ^
-swrlb:contains(?desc, ?nameCol1)
+swrlb:contains(?desc, ?nameCol1) ^
+swrlb:substringAfter(?lit1, ?simple1, ?dcomp1) ^
+hasDescription(?lit1, dLit1) ^
+swrlb:contains(?desc, ?dLit1)
 -> ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
 componentOf(?simple1, ?pred) ^
 SimpleExpression(?simple1) ^
 ReferencedColumn(?col1) ^
 ExpressionObject(?col1) ^
-componentOf(?col1, ?simple1)
+componentOf(?col1, ?simple1) ^
+componentOf(?lit1, ?simple1) ^
+ExpressionObject(?lit1)
