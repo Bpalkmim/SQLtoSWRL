@@ -340,7 +340,7 @@ local function scanAST(ast)
 			-- Chamadas para as partes esquerda e direita do Like
 			retAntAux, retConAux = scanAST(ast[1])
 			if ast[1]["tag"] ~= tag["colId"] then -- É um literal
-				retAnt = retAnt.."swrlb:substringBefore(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
+				retAnt = retAnt.."swrlb:substringAftertringBefore(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
 			end
 			retAnt = retAnt..retAntAux
 			retCon = retCon..retConAux
@@ -406,6 +406,9 @@ local function scanAST(ast)
 			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
 			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
+
+			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
 			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
@@ -456,14 +459,19 @@ local function scanAST(ast)
 			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
 			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
+
+			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
 			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["mult"] or ast["tag"] == tag["add"] then
 			table.insert(litList, formDescription(ast))
-
 			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
+
+			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
 			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
@@ -479,17 +487,21 @@ local function scanAST(ast)
 
 		elseif ast["tag"] == tag["date"] or ast["tag"] == tag["interval"] then
 			table.insert(litList, ast["tag"].." "..formDescription(ast[1]))
-
 			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
+
+			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
 			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["litString"] or ast["tag"] == tag["number"] then
 			table.insert(litList, ast[1])
-
 			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
+			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
+
+			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
 			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 

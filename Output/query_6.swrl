@@ -75,6 +75,7 @@ swrlb:contains(?desc, ?nameCol9) ^
 swrlb:substringAfter(?lit1, ?simple5, ?dcomp5) ^
 hasDescription(?lit1, dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
+swrlx:makeOWLThing(?lit1, ?simple5) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
 swrlb:substringAfter(?and3, ?and2, " And ") ^
@@ -92,7 +93,8 @@ hasName(?col10, ?nameCol10) ^
 swrlb:contains(?desc, ?nameCol10) ^
 swrlb:substringAfter(?lit2, ?simple6, ?dcomp6) ^
 hasDescription(?lit2, dLit2) ^
-swrlb:contains(?desc, ?dLit2)
+swrlb:contains(?desc, ?dLit2) ^
+swrlx:makeOWLThing(?lit2, ?simple6)
 -> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
@@ -145,6 +147,7 @@ SimpleExpression(?simple5) ^
 ReferencedColumn(?col9) ^
 ExpressionObject(?col9) ^
 componentOf(?col9, ?simple5) ^
+Literal(?lit1) ^
 componentOf(?lit1, ?simple5) ^
 ExpressionObject(?lit1) ^
 componentOf(?and5, ?pred) ^
@@ -155,6 +158,7 @@ SimpleExpression(?simple6) ^
 ReferencedColumn(?col10) ^
 ExpressionObject(?col10) ^
 componentOf(?col10, ?simple6) ^
+Literal(?lit2) ^
 componentOf(?lit2, ?simple6) ^
 ExpressionObject(?lit2)
 
@@ -236,6 +240,7 @@ swrlb:contains(?desc, ?nameCol9) ^
 swrlb:substringAfter(?lit1, ?simple5, ?dcomp5) ^
 hasDescription(?lit1, dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
+swrlx:makeOWLThing(?lit1, ?simple5) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
 swrlb:substringAfter(?and3, ?and2, " And ") ^
@@ -253,7 +258,8 @@ hasName(?col10, ?nameCol10) ^
 swrlb:contains(?desc, ?nameCol10) ^
 swrlb:substringAfter(?lit2, ?simple6, ?dcomp6) ^
 hasDescription(?lit2, dLit2) ^
-swrlb:contains(?desc, ?dLit2)
+swrlb:contains(?desc, ?dLit2) ^
+swrlx:makeOWLThing(?lit2, ?simple6)
 -> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
@@ -306,6 +312,7 @@ SimpleExpression(?simple5) ^
 ReferencedColumn(?col9) ^
 ExpressionObject(?col9) ^
 componentOf(?col9, ?simple5) ^
+Literal(?lit1) ^
 componentOf(?lit1, ?simple5) ^
 ExpressionObject(?lit1) ^
 componentOf(?and5, ?pred) ^
@@ -316,5 +323,6 @@ SimpleExpression(?simple6) ^
 ReferencedColumn(?col10) ^
 ExpressionObject(?col10) ^
 componentOf(?col10, ?simple6) ^
+Literal(?lit2) ^
 componentOf(?lit2, ?simple6) ^
 ExpressionObject(?lit2)

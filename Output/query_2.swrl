@@ -14,6 +14,7 @@ swrlb:contains(?desc, ?nameCol1) ^
 swrlb:substringAfter(?lit1, ?simple1, ?dcomp1) ^
 hasDescription(?lit1, dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
+swrlx:makeOWLThing(?lit1, ?simple1) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringBefore(?and0, ?and1, " And ") ^
 ComparisonOperator(?comp2) ^
@@ -59,6 +60,7 @@ swrlb:contains(?desc, ?nameCol6) ^
 swrlb:substringAfter(?lit2, ?simple4, ?dcomp4) ^
 hasDescription(?lit2, dLit2) ^
 swrlb:contains(?desc, ?dLit2) ^
+swrlx:makeOWLThing(?lit2, ?simple4) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
 swrlb:substringAfter(?and3, ?and2, " And ") ^
@@ -75,7 +77,8 @@ hasName(?col7, ?nameCol7) ^
 swrlb:contains(?desc, ?nameCol7) ^
 swrlb:substringAfter(?lit3, ?simple5, ?dcomp5) ^
 hasDescription(?lit3, dLit3) ^
-swrlb:contains(?desc, ?dLit3)
+swrlb:contains(?desc, ?dLit3) ^
+swrlx:makeOWLThing(?lit3, ?simple5)
 -> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
@@ -84,6 +87,7 @@ SimpleExpression(?simple1) ^
 ReferencedColumn(?col1) ^
 ExpressionObject(?col1) ^
 componentOf(?col1, ?simple1) ^
+Literal(?lit1) ^
 componentOf(?lit1, ?simple1) ^
 ExpressionObject(?lit1) ^
 componentOf(?and1, ?pred) ^
@@ -116,6 +120,7 @@ SimpleExpression(?simple4) ^
 ReferencedColumn(?col6) ^
 ExpressionObject(?col6) ^
 componentOf(?col6, ?simple4) ^
+Literal(?lit2) ^
 componentOf(?lit2, ?simple4) ^
 ExpressionObject(?lit2) ^
 componentOf(?and4, ?pred) ^
@@ -126,5 +131,6 @@ SimpleExpression(?simple5) ^
 ReferencedColumn(?col7) ^
 ExpressionObject(?col7) ^
 componentOf(?col7, ?simple5) ^
+Literal(?lit3) ^
 componentOf(?lit3, ?simple5) ^
 ExpressionObject(?lit3)

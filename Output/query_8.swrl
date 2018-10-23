@@ -112,7 +112,8 @@ hasName(?col13, ?nameCol13) ^
 swrlb:contains(?desc, ?nameCol13) ^
 swrlb:substringAfter(?lit1, ?simple7, ?dcomp7) ^
 hasDescription(?lit1, dLit1) ^
-swrlb:contains(?desc, ?dLit1)
+swrlb:contains(?desc, ?dLit1) ^
+swrlx:makeOWLThing(?lit1, ?simple7)
 -> componentOf(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
 componentOf(?comp1, ?simple1) ^
@@ -187,5 +188,6 @@ SimpleExpression(?simple7) ^
 ReferencedColumn(?col13) ^
 ExpressionObject(?col13) ^
 componentOf(?col13, ?simple7) ^
+Literal(?lit1) ^
 componentOf(?lit1, ?simple7) ^
 ExpressionObject(?lit1)
