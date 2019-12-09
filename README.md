@@ -4,7 +4,7 @@ A compiler from SQL to SWRL in Lua using LPeg to generate the AST.
 I used Lua version 5.1 and LPeg version 1.0.1.
 
 ### Current Status
-For now, we only generate the AST.
+We only generate queries (SELECT). We do not deal yet with CREATE or DELETE.
 
 ### Known bugs
 In test case 7, inside the "case" clause, there is an expression inside (redundant) parentheses that makes the program not stop when generating the AST.
