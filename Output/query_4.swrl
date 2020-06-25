@@ -1,63 +1,63 @@
 Predicate(?pred) ^
-hasDescription(?pred, ?desc) ^
+hasPredicateDescription(?pred, ?desc) ^
 swrlb:substringBefore(?and0, ?desc, " And ") ^
 swrlb:substringBefore(?or0, ?and0, " Or ") ^
 ComparisonOperator(?comp1) ^
-hasDescription(?comp1, ?dComp1) ^
+hasTokenDescription(?comp1, ?dComp1) ^
 swrlb:contains(?desc, ?dComp1) ^
 swrlb:tokenize(?op1, ?and0, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
 swrlx:makeOWLThing(?simple1, ?and0) ^
 Column(?col1) ^
-hasName(?col1, ?nameCol1) ^
+hasColumnName(?col1, ?nameCol1) ^
 swrlb:contains(?desc, ?nameCol1) ^
 Column(?col2) ^
-hasName(?col2, ?nameCol2) ^
+hasColumnName(?col2, ?nameCol2) ^
 swrlb:contains(?desc, ?nameCol2) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringBefore(?and0, ?and1, " And ") ^
 ComparisonOperator(?comp2) ^
-hasDescription(?comp2, ?dComp2) ^
+hasTokenDescription(?comp2, ?dComp2) ^
 swrlb:contains(?desc, ?dComp2) ^
 swrlb:tokenize(?op2, ?and1, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp2, ?op2) ^
 swrlx:makeOWLThing(?simple2, ?and1) ^
 Column(?col3) ^
-hasName(?col3, ?nameCol3) ^
+hasColumnName(?col3, ?nameCol3) ^
 swrlb:contains(?desc, ?nameCol3) ^
 Column(?col4) ^
-hasName(?col4, ?nameCol4) ^
+hasColumnName(?col4, ?nameCol4) ^
 swrlb:contains(?desc, ?nameCol4) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
 swrlb:substringBefore(?and0, ?and2, " And ") ^
 ComparisonOperator(?comp3) ^
-hasDescription(?comp3, ?dComp3) ^
+hasTokenDescription(?comp3, ?dComp3) ^
 swrlb:contains(?desc, ?dComp3) ^
 swrlb:tokenize(?op3, ?and2, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp3, ?op3) ^
 swrlx:makeOWLThing(?simple3, ?and2) ^
 Column(?col5) ^
-hasName(?col5, ?nameCol5) ^
+hasColumnName(?col5, ?nameCol5) ^
 swrlb:contains(?desc, ?nameCol5) ^
 Column(?col6) ^
-hasName(?col6, ?nameCol6) ^
+hasColumnName(?col6, ?nameCol6) ^
 swrlb:contains(?desc, ?nameCol6) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
 swrlb:substringAfter(?and3, ?and2, " And ") ^
 swrlb:substringBefore(?and0, ?and3, " And ") ^
 ComparisonOperator(?comp4) ^
-hasDescription(?comp4, ?dComp4) ^
+hasTokenDescription(?comp4, ?dComp4) ^
 swrlb:contains(?desc, ?dComp4) ^
 swrlb:tokenize(?op4, ?and3, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp4, ?op4) ^
 swrlx:makeOWLThing(?simple4, ?and3) ^
 Column(?col7) ^
-hasName(?col7, ?nameCol7) ^
+hasColumnName(?col7, ?nameCol7) ^
 swrlb:contains(?desc, ?nameCol7) ^
 Column(?col8) ^
-hasName(?col8, ?nameCol8) ^
+hasColumnName(?col8, ?nameCol8) ^
 swrlb:contains(?desc, ?nameCol8) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
@@ -65,16 +65,16 @@ swrlb:substringAfter(?and3, ?and2, " And ") ^
 swrlb:substringAfter(?and4, ?and3, " And ") ^
 swrlb:substringBefore(?and0, ?and4, " And ") ^
 ComparisonOperator(?comp5) ^
-hasDescription(?comp5, ?dComp5) ^
+hasTokenDescription(?comp5, ?dComp5) ^
 swrlb:contains(?desc, ?dComp5) ^
 swrlb:tokenize(?op5, ?and4, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp5, ?op5) ^
 swrlx:makeOWLThing(?simple5, ?and4) ^
 Column(?col9) ^
-hasName(?col9, ?nameCol9) ^
+hasColumnName(?col9, ?nameCol9) ^
 swrlb:contains(?desc, ?nameCol9) ^
 Column(?col10) ^
-hasName(?col10, ?nameCol10) ^
+hasColumnName(?col10, ?nameCol10) ^
 swrlb:contains(?desc, ?nameCol10) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
@@ -83,16 +83,16 @@ swrlb:substringAfter(?and4, ?and3, " And ") ^
 swrlb:substringAfter(?and5, ?and4, " And ") ^
 swrlb:substringBefore(?and0, ?and5, " And ") ^
 ComparisonOperator(?comp6) ^
-hasDescription(?comp6, ?dComp6) ^
+hasTokenDescription(?comp6, ?dComp6) ^
 swrlb:contains(?desc, ?dComp6) ^
 swrlb:tokenize(?op6, ?and5, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp6, ?op6) ^
 swrlx:makeOWLThing(?simple6, ?and5) ^
 Column(?col11) ^
-hasName(?col11, ?nameCol11) ^
+hasColumnName(?col11, ?nameCol11) ^
 swrlb:contains(?desc, ?nameCol11) ^
 Column(?col12) ^
-hasName(?col12, ?nameCol12) ^
+hasColumnName(?col12, ?nameCol12) ^
 swrlb:contains(?desc, ?nameCol12) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
 swrlb:substringAfter(?and2, ?and1, " And ") ^
@@ -102,16 +102,16 @@ swrlb:substringAfter(?and5, ?and4, " And ") ^
 swrlb:substringAfter(?and6, ?and5, " And ") ^
 swrlb:substringBefore(?and0, ?and6, " And ") ^
 ComparisonOperator(?comp7) ^
-hasDescription(?comp7, ?dComp7) ^
+hasTokenDescription(?comp7, ?dComp7) ^
 swrlb:contains(?desc, ?dComp7) ^
 swrlb:tokenize(?op7, ?and6, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp7, ?op7) ^
 swrlx:makeOWLThing(?simple7, ?and6) ^
 Column(?col13) ^
-hasName(?col13, ?nameCol13) ^
+hasColumnName(?col13, ?nameCol13) ^
 swrlb:contains(?desc, ?nameCol13) ^
 swrlb:substringAfter(?lit1, ?simple7, ?dcomp7) ^
-hasDescription(?lit1, dLit1) ^
+hasLiteralDescription(?lit1, dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
 swrlx:makeOWLThing(?lit1, ?simple7) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
@@ -123,16 +123,16 @@ swrlb:substringAfter(?and6, ?and5, " And ") ^
 swrlb:substringAfter(?and7, ?and6, " And ") ^
 swrlb:substringBefore(?and0, ?and7, " And ") ^
 ComparisonOperator(?comp8) ^
-hasDescription(?comp8, ?dComp8) ^
+hasTokenDescription(?comp8, ?dComp8) ^
 swrlb:contains(?desc, ?dComp8) ^
 swrlb:tokenize(?op8, ?and7, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp8, ?op8) ^
 swrlx:makeOWLThing(?simple8, ?and7) ^
 Column(?col14) ^
-hasName(?col14, ?nameCol14) ^
+hasColumnName(?col14, ?nameCol14) ^
 swrlb:contains(?desc, ?nameCol14) ^
 swrlb:substringAfter(?lit2, ?simple8, ?dcomp8) ^
-hasDescription(?lit2, dLit2) ^
+hasLiteralDescription(?lit2, dLit2) ^
 swrlb:contains(?desc, ?dLit2) ^
 swrlx:makeOWLThing(?lit2, ?simple8) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
@@ -145,16 +145,16 @@ swrlb:substringAfter(?and7, ?and6, " And ") ^
 swrlb:substringAfter(?and8, ?and7, " And ") ^
 swrlb:substringBefore(?and0, ?and8, " And ") ^
 ComparisonOperator(?comp9) ^
-hasDescription(?comp9, ?dComp9) ^
+hasTokenDescription(?comp9, ?dComp9) ^
 swrlb:contains(?desc, ?dComp9) ^
 swrlb:tokenize(?op9, ?and8, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp9, ?op9) ^
 swrlx:makeOWLThing(?simple9, ?and8) ^
 Column(?col15) ^
-hasName(?col15, ?nameCol15) ^
+hasColumnName(?col15, ?nameCol15) ^
 swrlb:contains(?desc, ?nameCol15) ^
 swrlb:substringAfter(?lit3, ?simple9, ?dcomp9) ^
-hasDescription(?lit3, dLit3) ^
+hasLiteralDescription(?lit3, dLit3) ^
 swrlb:contains(?desc, ?dLit3) ^
 swrlx:makeOWLThing(?lit3, ?simple9)
 -> componentOf(?and0, ?pred) ^

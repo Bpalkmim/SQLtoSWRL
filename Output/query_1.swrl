@@ -1,19 +1,19 @@
 Predicate(?pred) ^
-hasDescription(?pred, ?desc) ^
+hasPredicateDescription(?pred, ?desc) ^
 swrlb:substringBefore(?and0, ?desc, " And ") ^
 swrlb:substringBefore(?or0, ?and0, " Or ") ^
 swrlb:matches(?desc, ?or0) ^
 ComparisonOperator(?comp1) ^
-hasDescription(?comp1, ?dComp1) ^
+hasTokenDescription(?comp1, ?dComp1) ^
 swrlb:contains(?desc, ?dComp1) ^
 swrlb:tokenize(?op1, ?or0, " ") ^
 swrlb:stringEqualIgnoreCase(?dComp1, ?op1) ^
 swrlx:makeOWLThing(?simple1, ?pred) ^
 Column(?col1) ^
-hasName(?col1, ?nameCol1) ^
+hasColumnName(?col1, ?nameCol1) ^
 swrlb:contains(?desc, ?nameCol1) ^
 swrlb:substringAfter(?lit1, ?simple1, ?dcomp1) ^
-hasDescription(?lit1, dLit1) ^
+hasLiteralDescription(?lit1, dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
 swrlx:makeOWLThing(?lit1, ?simple1)
 -> ExpressionObject(?comp1) ^

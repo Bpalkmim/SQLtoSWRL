@@ -267,7 +267,7 @@ local function scanAST(ast)
 			end
 
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."hasTokenDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
 			if currAnd == 0 then
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
@@ -314,7 +314,7 @@ local function scanAST(ast)
 			end
 
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."hasTokenDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
 			if currAnd == 0 then
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
@@ -361,7 +361,7 @@ local function scanAST(ast)
 			end
 
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."hasTokenDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
 			if currAnd == 0 then
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
@@ -404,7 +404,7 @@ local function scanAST(ast)
 			table.insert(litList, list)
 
 			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -421,7 +421,7 @@ local function scanAST(ast)
 			end
 
 			retAnt = retAnt.."ComparisonOperator(?comp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
+			retAnt = retAnt.."hasTokenDescription(?comp"..#operList..", ?dComp"..#operList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dComp"..#operList..") ^\n"
 			if currAnd == 0 then
 				retAnt = retAnt.."swrlb:tokenize(?op"..#operList..", ?or"..currOr..", \" \") ^\n"
@@ -457,7 +457,7 @@ local function scanAST(ast)
 			table.insert(litList, desc)
 
 			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -467,7 +467,7 @@ local function scanAST(ast)
 
 		elseif ast["tag"] == tag["mult"] or ast["tag"] == tag["add"] then
 			table.insert(litList, formDescription(ast))
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -478,7 +478,7 @@ local function scanAST(ast)
 		elseif ast["tag"] == tag["colId"] then
 			table.insert(idList, ast[1])
 			retAnt = retAnt.."Column(?col"..#idList..") ^\n"
-			retAnt = retAnt.."hasName(?col"..#idList..", ?nameCol"..#idList..") ^\n"
+			retAnt = retAnt.."hasColumnName(?col"..#idList..", ?nameCol"..#idList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?nameCol"..#idList..") ^\n"
 
 			retCon = retCon.."ReferencedColumn(?col"..#idList..") ^\n"
@@ -487,7 +487,7 @@ local function scanAST(ast)
 
 		elseif ast["tag"] == tag["date"] or ast["tag"] == tag["interval"] then
 			table.insert(litList, ast["tag"].." "..formDescription(ast[1]))
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -497,7 +497,7 @@ local function scanAST(ast)
 
 		elseif ast["tag"] == tag["litString"] or ast["tag"] == tag["number"] then
 			table.insert(litList, ast[1])
-			retAnt = retAnt.."hasDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -542,7 +542,7 @@ local function reachWhere(ast)
 				for i, v in ipairs(ast[1]) do
 					currOr = currOr + 1
 					retAnt = retAnt.."Predicate(?pred) ^\n"
-					retAnt = retAnt.."hasDescription(?pred, ?desc) ^\n"
+					retAnt = retAnt.."hasPredicateDescription(?pred, ?desc) ^\n"
 
 					if i == 1 then
 						retAnt = retAnt.."swrlb:substringBefore(?or"..(currOr-1)..", ?desc, \" "..tag["or"].." \") ^\n"
@@ -569,8 +569,8 @@ local function reachWhere(ast)
 
 			else -- Não foi encontrado OR; gera-se apenas uma regra.
 				retAnt = retAnt.."Predicate(?pred) ^\n"
-				--retAnt = retAnt.."hasDescription(?pred, \""..formDescription(ast).."\") ^\n"
-				retAnt = retAnt.."hasDescription(?pred, ?desc) ^\n"
+				--retAnt = retAnt.."hasPredicateDescription(?pred, \""..formDescription(ast).."\") ^\n"
+				retAnt = retAnt.."hasPredicateDescription(?pred, ?desc) ^\n"
 				retAnt = retAnt.."swrlb:substringBefore(?and"..currAnd..", ?desc, \" "..tag["and"].." \") ^\n"
 				retAnt = retAnt.."swrlb:substringBefore(?or"..currOr..", ?and"..currAnd..", \" "..tag["or"].." \") ^\n"
 
