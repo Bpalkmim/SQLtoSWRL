@@ -252,7 +252,7 @@ local function scanAST(ast)
 					end
 					retAnt = retAnt.."swrlb:substringBefore(?and0, ?and"..(currAnd-1)..", \" "..tag["and"].." \") ^\n"
 				end
-				retCon = retCon.."componentOf(?and"..(currAnd-1)..", ?pred) ^\n"
+				retCon = retCon.."componentOfPredicate(?and"..(currAnd-1)..", ?pred) ^\n"
 				retAntAux, retConAux = scanAST(v)
 				retAnt = retAnt..retAntAux
 				retCon = retCon..retConAux
@@ -282,11 +282,11 @@ local function scanAST(ast)
 			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
-			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
-				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
+				retCon = retCon.."componentOfPredicate(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+				retCon = retCon.."componentOfSimpExp(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -329,11 +329,11 @@ local function scanAST(ast)
 			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
-			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
-				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
+				retCon = retCon.."componentOfPredicate(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+				retCon = retCon.."componentOfSimpExp(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -376,11 +376,11 @@ local function scanAST(ast)
 			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
-			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
-				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
+				retCon = retCon.."componentOfPredicate(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+				retCon = retCon.."componentOfSimpExp(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -409,7 +409,7 @@ local function scanAST(ast)
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
 			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["between"] then
@@ -436,11 +436,11 @@ local function scanAST(ast)
 			end
 
 			retCon = retCon.."ExpressionObject(?comp"..#operList..") ^\n"
-			retCon = retCon.."componentOf(?comp"..#operList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?comp"..#operList..", ?simple"..#expList..") ^\n"
 			if currAnd == 0 then
-				retCon = retCon.."componentOf(?simple"..#operList..", ?pred) ^\n"
+				retCon = retCon.."componentOfPredicate(?simple"..#operList..", ?pred) ^\n"
 			else
-				retCon = retCon.."componentOf(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
+				retCon = retCon.."componentOfSimpExp(?simple"..#operList..", ?and"..(currAnd-1)..") ^\n"
 			end
 			retCon = retCon.."SimpleExpression(?simple"..#expList..") ^\n"
 
@@ -462,7 +462,7 @@ local function scanAST(ast)
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
 			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["mult"] or ast["tag"] == tag["add"] then
@@ -472,7 +472,7 @@ local function scanAST(ast)
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
 			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["colId"] then
@@ -483,7 +483,7 @@ local function scanAST(ast)
 
 			retCon = retCon.."ReferencedColumn(?col"..#idList..") ^\n"
 			retCon = retCon.."ExpressionObject(?col"..#idList..") ^\n"
-			retCon = retCon.."componentOf(?col"..#idList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?col"..#idList..", ?simple"..#expList..") ^\n"
 
 		elseif ast["tag"] == tag["date"] or ast["tag"] == tag["interval"] then
 			table.insert(litList, ast["tag"].." "..formDescription(ast[1]))
@@ -492,7 +492,7 @@ local function scanAST(ast)
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
 			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		elseif ast["tag"] == tag["litString"] or ast["tag"] == tag["number"] then
@@ -502,7 +502,7 @@ local function scanAST(ast)
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
 			retCon = retCon.."Literal(?lit"..#litList..") ^\n"
-			retCon = retCon.."componentOf(?lit"..#litList..", ?simple"..#expList..") ^\n"
+			retCon = retCon.."componentOfSimpExp(?lit"..#litList..", ?simple"..#expList..") ^\n"
 			retCon = retCon.."ExpressionObject(?lit"..#litList..") ^\n"
 
 		-- TODO demais nós

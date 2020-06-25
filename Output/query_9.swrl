@@ -97,69 +97,69 @@ swrlb:contains(?desc, ?nameCol8) ^
 Column(?col9) ^
 hasColumnName(?col9, ?nameCol9) ^
 swrlb:contains(?desc, ?nameCol9)
--> componentOf(?and0, ?pred) ^
+-> componentOfPredicate(?and0, ?pred) ^
 ExpressionObject(?comp1) ^
-componentOf(?comp1, ?simple1) ^
-componentOf(?simple1, ?and0) ^
+componentOfSimpExp(?comp1, ?simple1) ^
+componentOfSimpExp(?simple1, ?and0) ^
 SimpleExpression(?simple1) ^
 ReferencedColumn(?col1) ^
 ExpressionObject(?col1) ^
-componentOf(?col1, ?simple1) ^
+componentOfSimpExp(?col1, ?simple1) ^
 ReferencedColumn(?col2) ^
 ExpressionObject(?col2) ^
-componentOf(?col2, ?simple1) ^
-componentOf(?and1, ?pred) ^
+componentOfSimpExp(?col2, ?simple1) ^
+componentOfPredicate(?and1, ?pred) ^
 ExpressionObject(?comp2) ^
-componentOf(?comp2, ?simple2) ^
-componentOf(?simple2, ?and1) ^
+componentOfSimpExp(?comp2, ?simple2) ^
+componentOfSimpExp(?simple2, ?and1) ^
 SimpleExpression(?simple2) ^
 ReferencedColumn(?col3) ^
 ExpressionObject(?col3) ^
-componentOf(?col3, ?simple2) ^
+componentOfSimpExp(?col3, ?simple2) ^
 ReferencedColumn(?col4) ^
 ExpressionObject(?col4) ^
-componentOf(?col4, ?simple2) ^
-componentOf(?and2, ?pred) ^
+componentOfSimpExp(?col4, ?simple2) ^
+componentOfPredicate(?and2, ?pred) ^
 ExpressionObject(?comp3) ^
-componentOf(?comp3, ?simple3) ^
-componentOf(?simple3, ?and2) ^
+componentOfSimpExp(?comp3, ?simple3) ^
+componentOfSimpExp(?simple3, ?and2) ^
 SimpleExpression(?simple3) ^
 ReferencedColumn(?col5) ^
 ExpressionObject(?col5) ^
-componentOf(?col5, ?simple3) ^
+componentOfSimpExp(?col5, ?simple3) ^
 Literal(?lit1) ^
-componentOf(?lit1, ?simple3) ^
+componentOfSimpExp(?lit1, ?simple3) ^
 ExpressionObject(?lit1) ^
-componentOf(?and3, ?pred) ^
+componentOfPredicate(?and3, ?pred) ^
 ExpressionObject(?comp4) ^
-componentOf(?comp4, ?simple4) ^
-componentOf(?simple4, ?and3) ^
+componentOfSimpExp(?comp4, ?simple4) ^
+componentOfSimpExp(?simple4, ?and3) ^
 SimpleExpression(?simple4) ^
 ReferencedColumn(?col6) ^
 ExpressionObject(?col6) ^
-componentOf(?col6, ?simple4) ^
+componentOfSimpExp(?col6, ?simple4) ^
 Literal(?lit2) ^
-componentOf(?lit2, ?simple4) ^
+componentOfSimpExp(?lit2, ?simple4) ^
 ExpressionObject(?lit2) ^
-componentOf(?and4, ?pred) ^
+componentOfPredicate(?and4, ?pred) ^
 ExpressionObject(?comp5) ^
-componentOf(?comp5, ?simple5) ^
-componentOf(?simple5, ?and4) ^
+componentOfSimpExp(?comp5, ?simple5) ^
+componentOfSimpExp(?simple5, ?and4) ^
 SimpleExpression(?simple5) ^
 ReferencedColumn(?col7) ^
 ExpressionObject(?col7) ^
-componentOf(?col7, ?simple5) ^
+componentOfSimpExp(?col7, ?simple5) ^
 Literal(?lit3) ^
-componentOf(?lit3, ?simple5) ^
+componentOfSimpExp(?lit3, ?simple5) ^
 ExpressionObject(?lit3) ^
-componentOf(?and5, ?pred) ^
+componentOfPredicate(?and5, ?pred) ^
 ExpressionObject(?comp6) ^
-componentOf(?comp6, ?simple6) ^
-componentOf(?simple6, ?and5) ^
+componentOfSimpExp(?comp6, ?simple6) ^
+componentOfSimpExp(?simple6, ?and5) ^
 SimpleExpression(?simple6) ^
 ReferencedColumn(?col8) ^
 ExpressionObject(?col8) ^
-componentOf(?col8, ?simple6) ^
+componentOfSimpExp(?col8, ?simple6) ^
 ReferencedColumn(?col9) ^
 ExpressionObject(?col9) ^
-componentOf(?col9, ?simple6)
+componentOfSimpExp(?col9, ?simple6)

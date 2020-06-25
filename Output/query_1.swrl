@@ -17,12 +17,12 @@ hasLiteralDescription(?lit1, dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
 swrlx:makeOWLThing(?lit1, ?simple1)
 -> ExpressionObject(?comp1) ^
-componentOf(?comp1, ?simple1) ^
-componentOf(?simple1, ?pred) ^
+componentOfSimpExp(?comp1, ?simple1) ^
+componentOfPredicate(?simple1, ?pred) ^
 SimpleExpression(?simple1) ^
 ReferencedColumn(?col1) ^
 ExpressionObject(?col1) ^
-componentOf(?col1, ?simple1) ^
+componentOfSimpExp(?col1, ?simple1) ^
 Literal(?lit1) ^
-componentOf(?lit1, ?simple1) ^
+componentOfSimpExp(?lit1, ?simple1) ^
 ExpressionObject(?lit1)
