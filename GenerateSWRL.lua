@@ -404,7 +404,7 @@ local function scanAST(ast)
 			table.insert(litList, list)
 
 			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
-			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -457,7 +457,7 @@ local function scanAST(ast)
 			table.insert(litList, desc)
 
 			retAnt = retAnt.."swrlb:substringAfter(?lit"..#litList..", ?simple"..#expList..", ?dcomp"..#operList..") ^\n"
-			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -467,7 +467,7 @@ local function scanAST(ast)
 
 		elseif ast["tag"] == tag["mult"] or ast["tag"] == tag["add"] then
 			table.insert(litList, formDescription(ast))
-			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -487,7 +487,7 @@ local function scanAST(ast)
 
 		elseif ast["tag"] == tag["date"] or ast["tag"] == tag["interval"] then
 			table.insert(litList, ast["tag"].." "..formDescription(ast[1]))
-			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 
@@ -497,7 +497,7 @@ local function scanAST(ast)
 
 		elseif ast["tag"] == tag["litString"] or ast["tag"] == tag["number"] then
 			table.insert(litList, ast[1])
-			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", dLit"..#litList..") ^\n"
+			retAnt = retAnt.."hasLiteralDescription(?lit"..#litList..", ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlb:contains(?desc, ?dLit"..#litList..") ^\n"
 			retAnt = retAnt.."swrlx:makeOWLThing(?lit"..#litList..", ?simple"..#operList..") ^\n"
 

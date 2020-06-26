@@ -73,7 +73,7 @@ Column(?col9) ^
 hasColumnName(?col9, ?nameCol9) ^
 swrlb:contains(?desc, ?nameCol9) ^
 swrlb:substringAfter(?lit1, ?simple5, ?dcomp5) ^
-hasLiteralDescription(?lit1, dLit1) ^
+hasLiteralDescription(?lit1, ?dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
 swrlx:makeOWLThing(?lit1, ?simple5) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
@@ -92,7 +92,7 @@ Column(?col10) ^
 hasColumnName(?col10, ?nameCol10) ^
 swrlb:contains(?desc, ?nameCol10) ^
 swrlb:substringAfter(?lit2, ?simple6, ?dcomp6) ^
-hasLiteralDescription(?lit2, dLit2) ^
+hasLiteralDescription(?lit2, ?dLit2) ^
 swrlb:contains(?desc, ?dLit2) ^
 swrlx:makeOWLThing(?lit2, ?simple6)
 -> componentOfPredicate(?and0, ?pred) ^
@@ -238,7 +238,7 @@ Column(?col9) ^
 hasColumnName(?col9, ?nameCol9) ^
 swrlb:contains(?desc, ?nameCol9) ^
 swrlb:substringAfter(?lit1, ?simple5, ?dcomp5) ^
-hasLiteralDescription(?lit1, dLit1) ^
+hasLiteralDescription(?lit1, ?dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
 swrlx:makeOWLThing(?lit1, ?simple5) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
@@ -257,7 +257,7 @@ Column(?col10) ^
 hasColumnName(?col10, ?nameCol10) ^
 swrlb:contains(?desc, ?nameCol10) ^
 swrlb:substringAfter(?lit2, ?simple6, ?dcomp6) ^
-hasLiteralDescription(?lit2, dLit2) ^
+hasLiteralDescription(?lit2, ?dLit2) ^
 swrlb:contains(?desc, ?dLit2) ^
 swrlx:makeOWLThing(?lit2, ?simple6)
 -> componentOfPredicate(?and0, ?pred) ^

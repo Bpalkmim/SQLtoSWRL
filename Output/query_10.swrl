@@ -41,7 +41,7 @@ Column(?col5) ^
 hasColumnName(?col5, ?nameCol5) ^
 swrlb:contains(?desc, ?nameCol5) ^
 swrlb:substringAfter(?lit1, ?simple3, ?dcomp3) ^
-hasLiteralDescription(?lit1, dLit1) ^
+hasLiteralDescription(?lit1, ?dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
 swrlx:makeOWLThing(?lit1, ?simple3)
 -> componentOfPredicate(?and0, ?pred) ^

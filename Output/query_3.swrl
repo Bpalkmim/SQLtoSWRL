@@ -12,7 +12,7 @@ Column(?col1) ^
 hasColumnName(?col1, ?nameCol1) ^
 swrlb:contains(?desc, ?nameCol1) ^
 swrlb:substringAfter(?lit1, ?simple1, ?dcomp1) ^
-hasLiteralDescription(?lit1, dLit1) ^
+hasLiteralDescription(?lit1, ?dLit1) ^
 swrlb:contains(?desc, ?dLit1) ^
 swrlx:makeOWLThing(?lit1, ?simple1) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
@@ -27,7 +27,7 @@ Column(?col2) ^
 hasColumnName(?col2, ?nameCol2) ^
 swrlb:contains(?desc, ?nameCol2) ^
 swrlb:substringAfter(?lit2, ?simple2, ?dcomp2) ^
-hasLiteralDescription(?lit2, dLit2) ^
+hasLiteralDescription(?lit2, ?dLit2) ^
 swrlb:contains(?desc, ?dLit2) ^
 swrlx:makeOWLThing(?lit2, ?simple2) ^
 swrlb:substringAfter(?and1, ?desc, " And ") ^
